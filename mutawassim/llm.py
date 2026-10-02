@@ -27,20 +27,29 @@ def chat_json(system: str, user: str) -> dict[str, Any]:
         raise
 
 
-def _real_chat(system: str, user: str) -> str:
-    """TODO: صِلوها بمزودكم. مثال OpenAI:
+_client = None
 
-    from openai import OpenAI
-    client = OpenAI(api_key=config.LLM_API_KEY)
-    resp = client.chat.completions.create(
+
+def _real_chat(system: str, user: str) -> str:
+    """تنفيذ OpenAI (الافتراضي). لمزود آخر: غيّروا هذه الدالة فقط.
+    يتطلب: pip install openai + LLM_API_KEY في .env + MOCK_MODE=0."""
+    global _client
+    if config.LLM_PROVIDER != "openai":
+        raise NotImplementedError(
+            f"المزود {config.LLM_PROVIDER} غير مُفعّل — عدّلوا _real_chat في llm.py"
+        )
+    if not config.LLM_API_KEY:
+        raise RuntimeError("LLM_API_KEY غير موجود في .env")
+    if _client is None:
+        from openai import OpenAI
+        _client = OpenAI(api_key=config.LLM_API_KEY)
+    resp = _client.chat.completions.create(
         model=config.LLM_MODEL,
-        messages=[{"role": "system", "content": system},
-                  {"role": "user", "content": user}],
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
         response_format={"type": "json_object"},
         temperature=0,
     )
-    return resp.choices[0].message.content
-    """
-    raise NotImplementedError(
-        "فعّلوا _real_chat في llm.py واضبطوا MOCK_MODE=0 في .env"
-    )
+    return resp.choices[0].message.content or "{}"

@@ -17,10 +17,11 @@ _INDEX: list[dict] | None = None   # [{doc, vec}]
 
 
 def _load_sources() -> list[dict]:
-    path = config.SOURCES_FILE
-    if not path.exists():
-        return []
-    return json.loads(path.read_text(encoding="utf-8"))
+    # المصادر الحقيقية أولًا، ثم العيّنة الاحتياطية
+    for path in (config.SOURCES_FILE, config.SOURCES_SAMPLE_FILE):
+        if path.exists():
+            return json.loads(path.read_text(encoding="utf-8"))
+    return []
 
 
 def build_index() -> int:
