@@ -1,0 +1,7 @@
+# للوضع الحقيقي (MOCK_MODE=0): أضيفوا هذه فوق الأساسية
+-r requirements.txt
+chromadb
+sentence-transformers
+scikit-learn
+requests
+openai

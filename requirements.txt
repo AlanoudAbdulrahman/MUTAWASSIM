@@ -1,0 +1,7 @@
+# الأساسية — تكفي لتشغيل النظام كاملًا في وضع MOCK
+pydantic>=2
+python-dotenv
+fastapi
+uvicorn
+streamlit
+pytest

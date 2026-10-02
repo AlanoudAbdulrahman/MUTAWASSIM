@@ -91,9 +91,11 @@ Example:
 ```json
 {
   "claim_id": "claim_001",
-  "original_text": "...",
-  "claim": "...",
-  "category": "hadith"
+  "source_post_id": "post_012",
+  "text": "the verifiable claim",
+  "original_text": "full post text",
+  "type": "hadith",
+  "normalized_query": "short search query"
 }
 ```
 

@@ -1,0 +1,8 @@
+[
+  {"claim_text": "النظافة من الإيمان", "expected_status": "weak"},
+  {"claim_text": "حب الوطن من الإيمان", "expected_status": "fabricated"},
+  {"claim_text": "اطلبوا العلم ولو في الصين", "expected_status": "fabricated"},
+  {"claim_text": "إنما الأعمال بالنيات", "expected_status": "confirmed"},
+  {"claim_text": "من حسن إسلام المرء تركه ما لا يعنيه", "expected_status": "confirmed"},
+  {"claim_text": "عبارة لا أصل لها ولا توجد في أي مصدر معتمد إطلاقا", "expected_status": "needs_review"}
+]

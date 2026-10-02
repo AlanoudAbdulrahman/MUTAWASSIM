@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# بيئات
+.venv/
+venv/
+env/
+
+# أسرار — لا تُرفع أبدًا
+.env
+*.key
+
+# بيانات مولّدة
+mutawassim/data/chroma_index/
+
+# نظام
+.DS_Store
+.ipynb_checkpoints/
