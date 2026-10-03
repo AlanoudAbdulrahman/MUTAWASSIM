@@ -2,39 +2,63 @@ import json
 import urllib.request
 from urllib.error import URLError, HTTPError
 import concurrent.futures
+import time
 
-def verify_url(url, doc_id):
+def verify_url(url, doc_id, retries=2):
     """
-    يقوم بإرسال طلب HTTP من نوع HEAD لفحص حالة الرابط دون تحميل محتواه كاملاً.
+    يقوم بفحص الرابط بشكل حقيقي وموثوق للإنتاج (Production-ready).
+    يحاول إرسال طلب HEAD أولاً لتوفير الموارد، وإذا قوبل برفض أو خطأ (مثل 405 أو 403)
+    يحاول إرسال طلب GET كامل. يتضمن أيضاً نظام إعادة المحاولة (Retries) لتجنب أخطاء الشبكة المؤقتة.
     """
-    # نستخدم User-Agent لتجنب حظر بعض المواقع للسكربتات
-    req = urllib.request.Request(
-        url, 
-        method='HEAD', 
-        headers={'User-Agent': 'Mozilla/5.0'}
-    )
+    # استخدام ترويسات متصفح حقيقية لتجنب الحظر من خوادم الحماية (مثل Cloudflare)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'ar,en-US;q=0.7,en;q=0.3'
+    }
     
-    try:
-        urllib.request.urlopen(req, timeout=5)
-        return None  # الرابط صالح
-    except HTTPError as e:
-        if e.code == 404:
-            return (doc_id, url, f"مكسور (404 Not Found)")
-        elif e.code in [403, 401]:
-            # بعض المواقع تحظر روبوتات الفحص (403 Forbidden)، لذا نعتبرها صالحة مبدئياً
-            return None
-        return (doc_id, url, f"خطأ HTTP {e.code}")
-    except URLError as e:
-        # إذا كان الرابط الوهمي الذي أنشأناه بغرض الاختبار (fake)
-        if "fake" in url:
-             return (doc_id, url, "رابط وهمي/مكسور (كما هو متوقع للاختبار)")
-        return (doc_id, url, "فشل الاتصال بالموقع")
-    except Exception as e:
-        return (doc_id, url, f"خطأ غير معروف: {str(e)}")
+    for attempt in range(retries):
+        try:
+            # 1. محاولة بطلب HEAD أولاً (أسرع وأقل استهلاكاً للبيانات)
+            req = urllib.request.Request(url, method='HEAD', headers=headers)
+            with urllib.request.urlopen(req, timeout=10) as response:
+                if response.status < 400:
+                    return None  # الرابط صالح ويعمل
+                    
+        except HTTPError as e:
+            # 2. بعض الخوادم تمنع طلبات HEAD وترد بـ 405 أو 403، لذا نجرب GET كخطة بديلة
+            if e.code in [403, 405, 503]:
+                try:
+                    req_get = urllib.request.Request(url, method='GET', headers=headers)
+                    with urllib.request.urlopen(req_get, timeout=10) as response_get:
+                        if response_get.status < 400:
+                            return None # الرابط صالح ويعمل
+                except HTTPError as e_get:
+                    if attempt == retries - 1:
+                        return (doc_id, url, f"خطأ HTTP {e_get.code} ({e_get.reason})")
+                except Exception as e_get:
+                    if attempt == retries - 1:
+                        return (doc_id, url, f"فشل الاتصال: {str(e_get)}")
+            else:
+                if attempt == retries - 1:
+                    return (doc_id, url, f"خطأ HTTP {e.code} ({e.reason})")
+        
+        except URLError as e:
+            if attempt == retries - 1:
+                return (doc_id, url, f"فشل الوصول للرابط: {e.reason}")
+        except Exception as e:
+            if attempt == retries - 1:
+                return (doc_id, url, f"خطأ غير متوقع: {str(e)}")
+                
+        # انتظار ثانية واحدة قبل إعادة المحاولة (في حال وجود ضغط على الخادم)
+        time.sleep(1)
+        
+    return (doc_id, url, "فشل الفحص بعد عدة محاولات")
 
 def check_links(sources_file="sources.json"):
-    print(f"--- جاري فحص صحة روابط الإسناد في ملف {sources_file}... ---\n")
-    print("قد يستغرق الفحص دقيقة واحدة بناءً على عدد الروابط وسرعة الإنترنت.\n")
+    print(f"--- جاري فحص صحة الروابط بشكل حقيقي في ملف {sources_file}... ---\n")
+    print("نظام الفحص يعمل الآن بقدرات متقدمة (يستخدم HEAD ثم GET مع إعادة المحاولة).")
+    print("قد يستغرق الفحص بعض الوقت بناءً على سرعة الاستجابة من الخوادم...\n")
     
     try:
         with open(sources_file, 'r', encoding='utf-8') as f:
@@ -45,12 +69,10 @@ def check_links(sources_file="sources.json"):
         
     broken_links = []
     
-    # نستخدم ThreadPoolExecutor لتسريع الفحص بفحص عدة روابط في نفس الوقت
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        # إنشاء المهام
+    # فحص متزامن لتسريع العملية (Multithreading) بدون إغراق الخوادم بالطلبات
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(verify_url, src["url"], src["id"]): src for src in sources if "url" in src}
         
-        # جمع النتائج
         for future in concurrent.futures.as_completed(futures):
             result = future.result()
             if result:
