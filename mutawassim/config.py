@@ -40,4 +40,5 @@ CHROMA_DIR = DATA_DIR / "chroma_index"
 # إعدادات الاسترجاع والعتبات
 RETRIEVE_K: int = int(os.getenv("RETRIEVE_K", "5"))
 MIN_CONFIDENCE: float = float(os.getenv("MIN_CONFIDENCE", "0.35"))
-MIN_SIM: float = float(os.getenv("MIN_SIM", "0.15"))  # أدنى تشابه لقبول دليل
+MIN_SIM: float = float(os.getenv("MIN_SIM", "0.15"))  # أدنى تشابه دلالي (الوضع الحقيقي)
+MIN_COVERAGE: float = float(os.getenv("MIN_COVERAGE", "0.6"))  # أدنى تغطية لفظية (وضع MOCK)
