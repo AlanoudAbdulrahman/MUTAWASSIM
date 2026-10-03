@@ -21,7 +21,7 @@ def map_ruling_to_status(ruling: str) -> str:
         return "confirmed"
     return "needs_review"
 
-def run_evaluation(test_file="test_set.json", sources_file="sources.json", threshold=0.4):
+def run_evaluation(test_file="mutawassim/data/test_set/test_set.json", sources_file="mutawassim/data/sources/sources.json", threshold=0.4):
     print("جاري تحميل بيانات الاختبار والمصادر...")
     with open(test_file, 'r', encoding='utf-8') as f:
         test_set = json.load(f)

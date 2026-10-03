@@ -34,7 +34,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 SOURCES_FILE = DATA_DIR / "sources" / "sources.json"          # المصادر الحقيقية (تُبنى من build_sources.py)
 SOURCES_SAMPLE_FILE = DATA_DIR / "sources" / "sources.sample.json"  # عيّنة احتياطية
-TEST_SET_FILE = DATA_DIR / "test_set" / "test_set.sample.json"
+TEST_SET_FILE = DATA_DIR / "test_set" / "test_set.json"
 CHROMA_DIR = DATA_DIR / "chroma_index"
 
 # إعدادات الاسترجاع والعتبات
