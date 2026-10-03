@@ -7,10 +7,12 @@
 
 | المجال | المصدر المعتمد | قاعدة الاستخدام | النوع |
 | --- | --- | --- | --- |
-| **الحديث النبوي** | [dorar.net/hadith](https://dorar.net/hadith) | لا يُنسب حديث دون حكم معتمد | حكم وإسناد |
-| **القرآن الكريم** | [quranpedia.net](https://quranpedia.net) | التأكد من موثوقية نقل الآيات | نص وضبط |
-| **الشبهات والأسئلة** | [dawa.center](https://dawa.center) | مصدر أساسي للحلول الحوارية | ردود معتمدة |
-| **الترجمة والمصطلحات** | [islamic-content.com](https://islamic-content.com) | قاموس مصطلحات مقفل | توطين |
+| **الحديث والأحكام** | [dorar.net/hadith](https://dorar.net/hadith) | لا يُنسب حديث دون حكم معتمد | حكم وإسناد |
+| **القرآن** | [quranpedia.net](https://quranpedia.net) | التأكد من موثوقية نقل الآيات | نص وضبط |
+| **التفسير والعقيدة والفقه والتاريخ** | [dorar.net](https://dorar.net) | الموسوعة الشاملة للاستدلال | مرجع علمي |
+| **الشبهات والأسئلة** | [dawa.center/file/7937](https://dawa.center/file/7937) | مصدر أساسي للحلول الحوارية | ردود معتمدة |
+| **المصطلحات** | [islamic-content.com/dictionary](https://islamic-content.com/dictionary) | قاموس مصطلحات مقفل | توطين |
+| **المكتبة الشاملة** | [shamela.ws](https://shamela.ws) | المرجع الشامل للكتب | مرجع أصيل |
 
 ## التوثيق التقني للروابط
 - جميع الروابط يتم تخزينها في الفهرس الداخلي للنظام (`sources.json`).
