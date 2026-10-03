@@ -4,6 +4,9 @@ embeddings.py — توليد المتجهات.
 
 MOCK: متجه حتمي بسيط (hashing) يعمل بلا تنزيل نماذج.
 الحقيقي: sentence-transformers بنموذج عربي.
+
+ملاحظة e5: نماذج intfloat/e5 تتطلب بادئة "query: " للاستعلام و"passage: "
+للمصدر — نضيفها تلقائيًا عند استخدام نموذج e5 فقط.
 """
 from __future__ import annotations
 
@@ -24,12 +27,20 @@ def _mock_embed(text: str) -> list[float]:
     return [v / norm for v in vec]
 
 
-def embed(texts: list[str]) -> list[list[float]]:
-    """يرجّع متجهًا لكل نص."""
+def _is_e5() -> bool:
+    return "e5" in config.EMBEDDING_MODEL.lower()
+
+
+def embed(texts: list[str], kind: str = "passage") -> list[list[float]]:
+    """يرجّع متجهًا لكل نص. kind: "passage" للمصادر، "query" للاستعلام (مهم لـ e5)."""
     if config.MOCK_MODE:
         return [_mock_embed(t) for t in texts]
     global _model
     if _model is None:
         from sentence_transformers import SentenceTransformer
         _model = SentenceTransformer(config.EMBEDDING_MODEL)
-    return _model.encode(texts, normalize_embeddings=True).tolist()
+    inputs = texts
+    if _is_e5():
+        prefix = "query: " if kind == "query" else "passage: "
+        inputs = [prefix + (t or "") for t in texts]
+    return _model.encode(inputs, normalize_embeddings=True).tolist()

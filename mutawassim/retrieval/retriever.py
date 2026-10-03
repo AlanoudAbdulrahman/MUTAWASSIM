@@ -34,7 +34,7 @@ def build_index() -> int:
     _DOCS = _load_sources()
     _VECS = None
     if not config.MOCK_MODE and _DOCS:
-        _VECS = embed([d.get("text", "") for d in _DOCS])
+        _VECS = embed([d.get("text", "") for d in _DOCS], kind="passage")
     return len(_DOCS)
 
 
@@ -65,8 +65,8 @@ def retrieve(normalized_query: str, k: int | None = None) -> list[Evidence]:
         scored = [(d, coverage(normalized_query, d.get("text", ""))) for d in _DOCS]
         scored = [(d, s) for d, s in scored if s >= config.MIN_COVERAGE]
     else:
-        # مطابقة دلالية: cosine على المتجهات
-        qv = embed([normalized_query])[0]
+        # مطابقة دلالية: cosine على المتجهات (بادئة query لـ e5)
+        qv = embed([normalized_query], kind="query")[0]
         scored = [(d, _cosine(qv, v)) for d, v in zip(_DOCS, _VECS or [])]
         scored = [(d, s) for d, s in scored if s >= config.MIN_SIM]
 

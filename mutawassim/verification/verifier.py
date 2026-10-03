@@ -4,7 +4,9 @@ verifier.py — الحكم على الادعاء بناءً على الأدلة 
 
 قاعدة صارمة: لا حكم من معرفة النموذج. عند غياب دليل كافٍ -> needs_review.
 MOCK: يشتق الحالة من حكم أقرب دليل (موضوع->fabricated، ضعيف->weak، صحيح->confirmed).
-الحقيقي: LLM مقيّد بالأدلة يعيد الحالة + التبرير.
+الحقيقي:
+  - مع مفتاح LLM: نموذج لغوي مقيّد بالأدلة يعيد الحالة + التبرير.
+  - بلا مفتاح: استرجاع e5 دلالي + حكم من درجة المصدر (هبوط آمن).
 """
 from __future__ import annotations
 
@@ -58,7 +60,17 @@ def verify(claim: Claim) -> VerificationResult:
             confidence=conf, note="MOCK: مشتقّ من حكم أقرب مصدر",
         )
 
-    # المسار الحقيقي: LLM مقيّد بالأدلة
+    # بلا مفتاح LLM: استرجاع e5 دلالي + حكم من درجة المصدر (هبوط آمن)
+    if not config.LLM_API_KEY:
+        top = evidence[0]
+        status = _status_from_ruling(top.ruling) or "needs_review"
+        conf = 0.75 if status != "needs_review" else 0.3
+        return VerificationResult(
+            claim_id=claim.claim_id, status=status, evidence=evidence[:3],
+            confidence=conf, note="استرجاع دلالي (e5) + حكم من المصدر (بلا LLM)",
+        )
+
+    # المسار الحقيقي الكامل: LLM مقيّد بالأدلة
     ev_text = "\n".join(f"- [{e.ruling}] {e.snippet} ({e.url})" for e in evidence)
     data = chat_json(_SYSTEM, f"الادعاء: {claim.text}\n\nالأدلة:\n{ev_text}")
     status = data.get("status", "needs_review")

@@ -2,8 +2,8 @@
 claim_extractor.py — استخراج الادعاءات القابلة للتحقق من منشور.
 المالك: العنود (الاستخراج).
 
-MOCK: تقسيم النص إلى جمل واعتبار كل جملة ادعاءً مبدئيًا.
-الحقيقي: LLM بموجّه يستخرج الادعاءات ويصنّف النوع ويكتب normalized_query.
+MOCK (أو بلا مفتاح LLM): تقسيم النص إلى جمل واعتبار كل جملة ادعاءً مبدئيًا.
+الحقيقي الكامل: LLM بموجّه يستخرج الادعاءات ويصنّف النوع ويكتب normalized_query.
 """
 from __future__ import annotations
 
@@ -34,25 +34,31 @@ def _guess_type(text: str) -> ClaimType:
     return "other"
 
 
+def _split_extract(post: Post) -> list[Claim]:
+    """استخراج حتمي بتقسيم الجمل (بلا LLM)."""
+    claims: list[Claim] = []
+    for j, sent in enumerate(_SENT_SPLIT.split(post.text)):
+        s = sent.strip()
+        if len(s) < 10:
+            continue
+        claims.append(
+            Claim(
+                claim_id=f"{post.post_id}_c{j:02d}",
+                source_post_id=post.post_id,
+                text=s,
+                original_text=post.text,
+                type=_guess_type(s),
+                normalized_query=s,
+            )
+        )
+    return claims
+
+
 def extract_claims(post: Post) -> list[Claim]:
     """يرجّع list[Claim] من منشور واحد."""
-    if config.MOCK_MODE:
-        claims: list[Claim] = []
-        for j, sent in enumerate(_SENT_SPLIT.split(post.text)):
-            s = sent.strip()
-            if len(s) < 10:
-                continue
-            claims.append(
-                Claim(
-                    claim_id=f"{post.post_id}_c{j:02d}",
-                    source_post_id=post.post_id,
-                    text=s,
-                    original_text=post.text,
-                    type=_guess_type(s),
-                    normalized_query=s,
-                )
-            )
-        return claims
+    # وضع MOCK أو غياب مفتاح LLM -> استخراج حتمي (يتيح اختبار الاسترجاع الدلالي بلا مفتاح)
+    if config.MOCK_MODE or not config.LLM_API_KEY:
+        return _split_extract(post)
 
     data = chat_json(_SYSTEM, post.text)
     out: list[Claim] = []
