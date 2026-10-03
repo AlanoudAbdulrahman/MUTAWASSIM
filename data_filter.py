@@ -1,17 +1,24 @@
 import re
-import torch
-import torch.nn.functional as F
-from sentence_transformers import SentenceTransformer
 
 # ---------------------------------------------------------
 # إعداد الطبقة الثانية: نموذج الذكاء الاصطناعي (AI Model)
 # ---------------------------------------------------------
 try:
+    import torch
+    import torch.nn.functional as F
+    from sentence_transformers import SentenceTransformer
+    
     print("جاري تحميل نموذج الذكاء الاصطناعي للفلترة الهجينة...")
     model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
     labels = ["محتوى ديني، أحاديث، فقه، فتاوى إسلامية، قرآن", "محتوى عام، ترفيه، طبخ، أخبار، يوميات"]
     label_embeddings = model.encode(labels, convert_to_tensor=True)
+except ImportError:
+    model = None
+    print("ملاحظة: مكتبة sentence-transformers غير مثبتة، سيتم الاعتماد على الكلمات المفتاحية فقط.")
 except Exception as e:
+    model = None
+    print("ملاحظة: نموذج AI لم يُحمل، سيتم الاعتماد على الكلمات المفتاحية فقط.")
+
     model = None
     print("ملاحظة: نموذج AI لم يُحمل، سيتم الاعتماد على الكلمات المفتاحية فقط.")
 
@@ -64,5 +71,5 @@ if __name__ == "__main__":
     print("\n--- نتائج اختبار الفلتر الهجين (الكلمات + الذكاء الاصطناعي) ---")
     for text, expected in examples:
         result = is_religious(text)
-        status = "✅" if result == expected else "❌"
+        status = "[PASS]" if result == expected else "[FAIL]"
         print(f"{status} | النص: {text[:35]:<35} | النتيجة: {result}")

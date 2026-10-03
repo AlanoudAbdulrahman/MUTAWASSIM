@@ -1,12 +1,21 @@
 import json
-import chromadb
-from chromadb.utils import embedding_functions
+try:
+    import chromadb
+    from chromadb.utils import embedding_functions
+    HAS_CHROMA = True
+except ImportError:
+    HAS_CHROMA = False
+    print("تنبيه: مكتبة chromadb غير مثبتة.")
 
 def build_index(docs_path="sources.json", persist_directory="./chroma_db"):
     """
     يبني فهرس Chroma من ملف المصادر الموحد باستخدام نماذج SentenceTransformers (sbert.net).
     """
     print(f"Reading sources from {docs_path}...")
+    if not HAS_CHROMA:
+        print("لا يمكن بناء الفهرس لعدم توفر مكتبة chromadb. (يمكنك تجاوز هذه الخطوة في الهاكاثون حيث أن evaluate يعتمد على المحاكاة أو SBERT مباشرة)")
+        return
+        
     try:
         with open(docs_path, 'r', encoding='utf-8') as f:
             docs = json.load(f)
