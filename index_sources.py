@@ -26,11 +26,11 @@ def build_index(docs_path="sources.json", persist_directory="./chroma_db"):
     # تهيئة عميل Chroma في مسار محلي
     client = chromadb.PersistentClient(path=persist_directory)
     
-    # استخدام نموذج متعدد اللغات كما هو محدد في الخطة (paraphrase-multilingual)
-    # يمكن تغييره إلى intfloat/multilingual-e5-base إذا تطلب الأمر
-    print("Loading embedding model (paraphrase-multilingual-MiniLM-L12-v2)...")
+    # استخدام نموذج متعدد اللغات دقيق
+    # intfloat/multilingual-e5-base هو الأفضل للنصوص العربية
+    print("Loading embedding model (intfloat/multilingual-e5-base)...")
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name="paraphrase-multilingual-MiniLM-L12-v2"
+        model_name="intfloat/multilingual-e5-base"
     )
     
     # إنشاء أو جلب المجموعة (Collection)

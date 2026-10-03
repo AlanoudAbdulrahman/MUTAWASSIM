@@ -25,7 +25,7 @@ LLM_MODEL: str = os.getenv("LLM_MODEL", "gpt-4o-mini")
 
 # نموذج الـ embeddings العربي (sentence-transformers)
 EMBEDDING_MODEL: str = os.getenv(
-    "EMBEDDING_MODEL", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    "EMBEDDING_MODEL", "intfloat/multilingual-e5-base"
 )
 
 # مسارات البيانات

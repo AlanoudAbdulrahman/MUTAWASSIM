@@ -9,7 +9,7 @@ try:
     from sentence_transformers import SentenceTransformer
     
     print("جاري تحميل نموذج الذكاء الاصطناعي للفلترة الهجينة...")
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    model = SentenceTransformer('intfloat/multilingual-e5-base')
     labels = ["محتوى ديني، أحاديث، فقه، فتاوى إسلامية، قرآن", "محتوى عام، ترفيه، طبخ، أخبار، يوميات"]
     label_embeddings = model.encode(labels, convert_to_tensor=True)
 except ImportError:

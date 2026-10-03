@@ -33,7 +33,7 @@ def run_evaluation(test_file="test_set.json", sources_file="sources.json", thres
     
     if HAS_AI_MODEL:
         print("جاري تحميل النموذج لحساب المطابقة (قد يستغرق بضع ثوانٍ)...")
-        model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        model = SentenceTransformer('intfloat/multilingual-e5-base')
         source_texts = [s["text"] for s in sources]
         source_embeddings = model.encode(source_texts, convert_to_tensor=True)
     else:
