@@ -2,7 +2,7 @@
   {
     "id": "s1",
     "text": "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى",
-    "url": "https://dorar.net/hadith/1",
+    "url": "https://dorar.net/hadith/search?q=%D8%A5%D9%86%D9%85%D8%A7%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A8%D8%A7%D9%84%D9%86%D9%8A%D8%A7%D8%AA%D8%8C%20%D9%88%D8%A5%D9%86%D9%85%D8%A7%20%D9%84%D9%83%D9%84%20%D8%A7%D9%85%D8%B1%D8%A6%20%D9%85%D8%A7",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -10,7 +10,7 @@
   {
     "id": "s2",
     "text": "بني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمدا رسول الله، وإقام الصلاة...",
-    "url": "https://dorar.net/hadith/2",
+    "url": "https://dorar.net/hadith/search?q=%D8%A8%D9%86%D9%8A%20%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%89%20%D8%AE%D9%85%D8%B3%3A%20%D8%B4%D9%87%D8%A7%D8%AF%D8%A9%20%D8%A3%D9%86%20%D9%84%D8%A7",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -18,7 +18,7 @@
   {
     "id": "s3",
     "text": "لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه",
-    "url": "https://dorar.net/hadith/3",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D8%A7%20%D9%8A%D8%A4%D9%85%D9%86%20%D8%A3%D8%AD%D8%AF%D9%83%D9%85%20%D8%AD%D8%AA%D9%89%20%D9%8A%D8%AD%D8%A8%20%D9%84%D8%A3%D8%AE%D9%8A%D9%87%20%D9%85%D8%A7",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -26,7 +26,7 @@
   {
     "id": "s4",
     "text": "الدين النصيحة. قلنا: لمن؟ قال: لله ولكتابه ولرسوله ولأئمة المسلمين وعامتهم",
-    "url": "https://dorar.net/hadith/4",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%AF%D9%8A%D9%86%20%D8%A7%D9%84%D9%86%D8%B5%D9%8A%D8%AD%D8%A9.%20%D9%82%D9%84%D9%86%D8%A7%3A%20%D9%84%D9%85%D9%86%D8%9F%20%D9%82%D8%A7%D9%84%3A%20%D9%84%D9%84%D9%87%20%D9%88%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -34,7 +34,7 @@
   {
     "id": "s5",
     "text": "والكلمة الطيبة صدقة",
-    "url": "https://dorar.net/hadith/5",
+    "url": "https://dorar.net/hadith/search?q=%D9%88%D8%A7%D9%84%D9%83%D9%84%D9%85%D8%A9%20%D8%A7%D9%84%D8%B7%D9%8A%D8%A8%D8%A9%20%D8%B5%D8%AF%D9%82%D8%A9",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -42,7 +42,7 @@
   {
     "id": "s6",
     "text": "إن الله لا ينظر إلى صوركم وأموالكم، ولكن ينظر إلى قلوبكم وأعمالكم",
-    "url": "https://dorar.net/hadith/6",
+    "url": "https://dorar.net/hadith/search?q=%D8%A5%D9%86%20%D8%A7%D9%84%D9%84%D9%87%20%D9%84%D8%A7%20%D9%8A%D9%86%D8%B8%D8%B1%20%D8%A5%D9%84%D9%89%20%D8%B5%D9%88%D8%B1%D9%83%D9%85%20%D9%88%D8%A3%D9%85%D9%88%D8%A7%D9%84%D9%83%D9%85%D8%8C",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -50,7 +50,7 @@
   {
     "id": "s7",
     "text": "من سلك طريقا يلتمس فيه علما سهل الله له به طريقا إلى الجنة",
-    "url": "https://dorar.net/hadith/7",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%B3%D9%84%D9%83%20%D8%B7%D8%B1%D9%8A%D9%82%D8%A7%20%D9%8A%D9%84%D8%AA%D9%85%D8%B3%20%D9%81%D9%8A%D9%87%20%D8%B9%D9%84%D9%85%D8%A7%20%D8%B3%D9%87%D9%84",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -58,7 +58,7 @@
   {
     "id": "s8",
     "text": "تبسمك في وجه أخيك لك صدقة",
-    "url": "https://dorar.net/hadith/8",
+    "url": "https://dorar.net/hadith/search?q=%D8%AA%D8%A8%D8%B3%D9%85%D9%83%20%D9%81%D9%8A%20%D9%88%D8%AC%D9%87%20%D8%A3%D8%AE%D9%8A%D9%83%20%D9%84%D9%83%20%D8%B5%D8%AF%D9%82%D8%A9",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -66,7 +66,7 @@
   {
     "id": "s9",
     "text": "لا ضرر ولا ضرار",
-    "url": "https://dorar.net/hadith/9",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D8%A7%20%D8%B6%D8%B1%D8%B1%20%D9%88%D9%84%D8%A7%20%D8%B6%D8%B1%D8%A7%D8%B1",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -74,7 +74,7 @@
   {
     "id": "s10",
     "text": "اتقوا الظلم، فإن الظلم ظلمات يوم القيامة",
-    "url": "https://dorar.net/hadith/10",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D8%AA%D9%82%D9%88%D8%A7%20%D8%A7%D9%84%D8%B8%D9%84%D9%85%D8%8C%20%D9%81%D8%A5%D9%86%20%D8%A7%D9%84%D8%B8%D9%84%D9%85%20%D8%B8%D9%84%D9%85%D8%A7%D8%AA%20%D9%8A%D9%88%D9%85%20%D8%A7%D9%84%D9%82%D9%8A%D8%A7%D9%85%D8%A9",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -82,7 +82,7 @@
   {
     "id": "s11",
     "text": "المسلم من سلم المسلمون من لسانه ويده",
-    "url": "https://dorar.net/hadith/11",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%20%D9%85%D9%86%20%D8%B3%D9%84%D9%85%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%D9%88%D9%86%20%D9%85%D9%86%20%D9%84%D8%B3%D8%A7%D9%86%D9%87%20%D9%88%D9%8A%D8%AF%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -90,7 +90,7 @@
   {
     "id": "s12",
     "text": "كلكم راع وكلكم مسؤول عن رعيته",
-    "url": "https://dorar.net/hadith/12",
+    "url": "https://dorar.net/hadith/search?q=%D9%83%D9%84%D9%83%D9%85%20%D8%B1%D8%A7%D8%B9%20%D9%88%D9%83%D9%84%D9%83%D9%85%20%D9%85%D8%B3%D8%A4%D9%88%D9%84%20%D8%B9%D9%86%20%D8%B1%D8%B9%D9%8A%D8%AA%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -98,7 +98,7 @@
   {
     "id": "s13",
     "text": "من رأى منكم منكرا فليغيره بيده، فإن لم يستطع فبلسانه...",
-    "url": "https://dorar.net/hadith/13",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%B1%D8%A3%D9%89%20%D9%85%D9%86%D9%83%D9%85%20%D9%85%D9%86%D9%83%D8%B1%D8%A7%20%D9%81%D9%84%D9%8A%D8%BA%D9%8A%D8%B1%D9%87%20%D8%A8%D9%8A%D8%AF%D9%87%D8%8C%20%D9%81%D8%A5%D9%86",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -106,7 +106,7 @@
   {
     "id": "s14",
     "text": "الطهور شطر الإيمان، والحمد لله تملا الميزان",
-    "url": "https://dorar.net/hadith/14",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B7%D9%87%D9%88%D8%B1%20%D8%B4%D8%B7%D8%B1%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86%D8%8C%20%D9%88%D8%A7%D9%84%D8%AD%D9%85%D8%AF%20%D9%84%D9%84%D9%87%20%D8%AA%D9%85%D9%84%D8%A7%20%D8%A7%D9%84%D9%85%D9%8A%D8%B2%D8%A7%D9%86",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -114,7 +114,7 @@
   {
     "id": "s15",
     "text": "آية المنافق ثلاث: إذا حدث كذب، وإذا وعد أخلف، وإذا اؤتمن خان",
-    "url": "https://dorar.net/hadith/15",
+    "url": "https://dorar.net/hadith/search?q=%D8%A2%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%81%D9%82%20%D8%AB%D9%84%D8%A7%D8%AB%3A%20%D8%A5%D8%B0%D8%A7%20%D8%AD%D8%AF%D8%AB%20%D9%83%D8%B0%D8%A8%D8%8C%20%D9%88%D8%A5%D8%B0%D8%A7",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -122,7 +122,7 @@
   {
     "id": "s16",
     "text": "خيركم من تعلم القرآن وعلمه",
-    "url": "https://dorar.net/hadith/16",
+    "url": "https://dorar.net/hadith/search?q=%D8%AE%D9%8A%D8%B1%D9%83%D9%85%20%D9%85%D9%86%20%D8%AA%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D9%82%D8%B1%D8%A2%D9%86%20%D9%88%D8%B9%D9%84%D9%85%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -130,7 +130,7 @@
   {
     "id": "s17",
     "text": "لا يدخل الجنة من كان في قلبه مثقال ذرة من كبر",
-    "url": "https://dorar.net/hadith/17",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D8%A7%20%D9%8A%D8%AF%D8%AE%D9%84%20%D8%A7%D9%84%D8%AC%D9%86%D8%A9%20%D9%85%D9%86%20%D9%83%D8%A7%D9%86%20%D9%81%D9%8A%20%D9%82%D9%84%D8%A8%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -138,7 +138,7 @@
   {
     "id": "s18",
     "text": "من صام رمضان إيمانا واحتسابا غفر له ما تقدم من ذنبه",
-    "url": "https://dorar.net/hadith/18",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%B5%D8%A7%D9%85%20%D8%B1%D9%85%D8%B6%D8%A7%D9%86%20%D8%A5%D9%8A%D9%85%D8%A7%D9%86%D8%A7%20%D9%88%D8%A7%D8%AD%D8%AA%D8%B3%D8%A7%D8%A8%D8%A7%20%D8%BA%D9%81%D8%B1%20%D9%84%D9%87",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -146,7 +146,7 @@
   {
     "id": "s19",
     "text": "العمرة إلى العمرة كفارة لما بينهما، والحج المبرور ليس له جزاء إلا الجنة",
-    "url": "https://dorar.net/hadith/19",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D8%A9%20%D8%A5%D9%84%D9%89%20%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D8%A9%20%D9%83%D9%81%D8%A7%D8%B1%D8%A9%20%D9%84%D9%85%D8%A7%20%D8%A8%D9%8A%D9%86%D9%87%D9%85%D8%A7%D8%8C%20%D9%88%D8%A7%D9%84%D8%AD%D8%AC",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -154,7 +154,7 @@
   {
     "id": "s20",
     "text": "من غشنا فليس منا",
-    "url": "https://dorar.net/hadith/20",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%BA%D8%B4%D9%86%D8%A7%20%D9%81%D9%84%D9%8A%D8%B3%20%D9%85%D9%86%D8%A7",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -162,7 +162,7 @@
   {
     "id": "s21",
     "text": "المرء مع من أحب يوم القيامة",
-    "url": "https://dorar.net/hadith/21",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%85%D8%B1%D8%A1%20%D9%85%D8%B9%20%D9%85%D9%86%20%D8%A3%D8%AD%D8%A8%20%D9%8A%D9%88%D9%85%20%D8%A7%D9%84%D9%82%D9%8A%D8%A7%D9%85%D8%A9",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -170,7 +170,7 @@
   {
     "id": "s22",
     "text": "اتقوا النار ولو بشق تمرة، فمن لم يجد فبكلمة طيبة",
-    "url": "https://dorar.net/hadith/22",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D8%AA%D9%82%D9%88%D8%A7%20%D8%A7%D9%84%D9%86%D8%A7%D8%B1%20%D9%88%D9%84%D9%88%20%D8%A8%D8%B4%D9%82%20%D8%AA%D9%85%D8%B1%D8%A9%D8%8C%20%D9%81%D9%85%D9%86%20%D9%84%D9%85",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -178,7 +178,7 @@
   {
     "id": "s23",
     "text": "ما نقصت صدقة من مال، وما زاد الله عبدا بعفو إلا عزا",
-    "url": "https://dorar.net/hadith/23",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D8%A7%20%D9%86%D9%82%D8%B5%D8%AA%20%D8%B5%D8%AF%D9%82%D8%A9%20%D9%85%D9%86%20%D9%85%D8%A7%D9%84%D8%8C%20%D9%88%D9%85%D8%A7%20%D8%B2%D8%A7%D8%AF",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -186,7 +186,7 @@
   {
     "id": "s24",
     "text": "من دل على خير فله مثل أجر فاعله",
-    "url": "https://dorar.net/hadith/24",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%AF%D9%84%20%D8%B9%D9%84%D9%89%20%D8%AE%D9%8A%D8%B1%20%D9%81%D9%84%D9%87%20%D9%85%D8%AB%D9%84%20%D8%A3%D8%AC%D8%B1",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -194,7 +194,7 @@
   {
     "id": "s25",
     "text": "المؤمن القوي خير وأحب إلى الله من المؤمن الضعيف",
-    "url": "https://dorar.net/hadith/25",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%85%D8%A4%D9%85%D9%86%20%D8%A7%D9%84%D9%82%D9%88%D9%8A%20%D8%AE%D9%8A%D8%B1%20%D9%88%D8%A3%D8%AD%D8%A8%20%D8%A5%D9%84%D9%89%20%D8%A7%D9%84%D9%84%D9%87%20%D9%85%D9%86",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -202,7 +202,7 @@
   {
     "id": "s26",
     "text": "حق المسلم على المسلم خمس: رد السلام، وعيادة المريض...",
-    "url": "https://dorar.net/hadith/26",
+    "url": "https://dorar.net/hadith/search?q=%D8%AD%D9%82%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%20%D8%AE%D9%85%D8%B3%3A%20%D8%B1%D8%AF%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%8C",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -210,7 +210,7 @@
   {
     "id": "s27",
     "text": "الصيام جنة، فإذا كان يوم صوم أحدكم فلا يرفث ولا يصخب",
-    "url": "https://dorar.net/hadith/27",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B5%D9%8A%D8%A7%D9%85%20%D8%AC%D9%86%D8%A9%D8%8C%20%D9%81%D8%A5%D8%B0%D8%A7%20%D9%83%D8%A7%D9%86%20%D9%8A%D9%88%D9%85%20%D8%B5%D9%88%D9%85%20%D8%A3%D8%AD%D8%AF%D9%83%D9%85",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -218,7 +218,7 @@
   {
     "id": "s28",
     "text": "من يرد الله به خيرا يفقهه في الدين",
-    "url": "https://dorar.net/hadith/28",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D9%8A%D8%B1%D8%AF%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A8%D9%87%20%D8%AE%D9%8A%D8%B1%D8%A7%20%D9%8A%D9%81%D9%82%D9%87%D9%87%20%D9%81%D9%8A",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -226,7 +226,7 @@
   {
     "id": "s29",
     "text": "إنما الصبر عند الصدمة الأولى",
-    "url": "https://dorar.net/hadith/29",
+    "url": "https://dorar.net/hadith/search?q=%D8%A5%D9%86%D9%85%D8%A7%20%D8%A7%D9%84%D8%B5%D8%A8%D8%B1%20%D8%B9%D9%86%D8%AF%20%D8%A7%D9%84%D8%B5%D8%AF%D9%85%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -234,7 +234,7 @@
   {
     "id": "s30",
     "text": "ليس الشديد بالصرعة، إنما الشديد الذي يملك نفسه عند الغضب",
-    "url": "https://dorar.net/hadith/30",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D9%8A%D8%B3%20%D8%A7%D9%84%D8%B4%D8%AF%D9%8A%D8%AF%20%D8%A8%D8%A7%D9%84%D8%B5%D8%B1%D8%B9%D8%A9%D8%8C%20%D8%A5%D9%86%D9%85%D8%A7%20%D8%A7%D9%84%D8%B4%D8%AF%D9%8A%D8%AF%20%D8%A7%D9%84%D8%B0%D9%8A%20%D9%8A%D9%85%D9%84%D9%83",
     "ruling": "صحيح",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -242,7 +242,7 @@
   {
     "id": "s31",
     "text": "اختلاف أمتي رحمة",
-    "url": "https://dorar.net/fake/1",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D8%AE%D8%AA%D9%84%D8%A7%D9%81%20%D8%A3%D9%85%D8%AA%D9%8A%20%D8%B1%D8%AD%D9%85%D8%A9",
     "ruling": "لا أصل له (موضوع)",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -250,7 +250,7 @@
   {
     "id": "s32",
     "text": "من نام بعد العصر فاختلس عقله فلا يلومن إلا نفسه",
-    "url": "https://dorar.net/fake/2",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D9%86%D8%A7%D9%85%20%D8%A8%D8%B9%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%20%D9%81%D8%A7%D8%AE%D8%AA%D9%84%D8%B3%20%D8%B9%D9%82%D9%84%D9%87%20%D9%81%D9%84%D8%A7",
     "ruling": "ضعيف جدا",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -258,7 +258,7 @@
   {
     "id": "s33",
     "text": "النظافة من الإيمان",
-    "url": "https://dorar.net/fake/3",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%81%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -266,7 +266,7 @@
   {
     "id": "s34",
     "text": "صوموا تصحوا",
-    "url": "https://dorar.net/fake/4",
+    "url": "https://dorar.net/hadith/search?q=%D8%B5%D9%88%D9%85%D9%88%D8%A7%20%D8%AA%D8%B5%D8%AD%D9%88%D8%A7",
     "ruling": "ضعيف",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -274,7 +274,7 @@
   {
     "id": "s35",
     "text": "من حج فلم يزرني فقد جفاني",
-    "url": "https://dorar.net/fake/5",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%AD%D8%AC%20%D9%81%D9%84%D9%85%20%D9%8A%D8%B2%D8%B1%D9%86%D9%8A%20%D9%81%D9%82%D8%AF%20%D8%AC%D9%81%D8%A7%D9%86%D9%8A",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -282,7 +282,7 @@
   {
     "id": "s36",
     "text": "لو أحسن أحدكم ظنه بحجر لنفعه",
-    "url": "https://dorar.net/fake/6",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D9%88%20%D8%A3%D8%AD%D8%B3%D9%86%20%D8%A3%D8%AD%D8%AF%D9%83%D9%85%20%D8%B8%D9%86%D9%87%20%D8%A8%D8%AD%D8%AC%D8%B1%20%D9%84%D9%86%D9%81%D8%B9%D9%87",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -290,7 +290,7 @@
   {
     "id": "s37",
     "text": "من عرف نفسه فقد عرف ربه",
-    "url": "https://dorar.net/fake/7",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%B9%D8%B1%D9%81%20%D9%86%D9%81%D8%B3%D9%87%20%D9%81%D9%82%D8%AF%20%D8%B9%D8%B1%D9%81%20%D8%B1%D8%A8%D9%87",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -298,7 +298,7 @@
   {
     "id": "s38",
     "text": "حب الوطن من الإيمان",
-    "url": "https://dorar.net/fake/8",
+    "url": "https://dorar.net/hadith/search?q=%D8%AD%D8%A8%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -306,7 +306,7 @@
   {
     "id": "s39",
     "text": "المعدة بيت الداء والحمية رأس الدواء",
-    "url": "https://dorar.net/fake/9",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%85%D8%B9%D8%AF%D8%A9%20%D8%A8%D9%8A%D8%AA%20%D8%A7%D9%84%D8%AF%D8%A7%D8%A1%20%D9%88%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%A9%20%D8%B1%D8%A3%D8%B3%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1",
     "ruling": "ليس بحديث (كلام أطباء)",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -314,7 +314,7 @@
   {
     "id": "s40",
     "text": "أبغض الحلال إلى الله الطلاق",
-    "url": "https://dorar.net/fake/10",
+    "url": "https://dorar.net/hadith/search?q=%D8%A3%D8%A8%D8%BA%D8%B6%20%D8%A7%D9%84%D8%AD%D9%84%D8%A7%D9%84%20%D8%A5%D9%84%D9%89%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A7%D9%84%D8%B7%D9%84%D8%A7%D9%82",
     "ruling": "ضعيف",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -322,7 +322,7 @@
   {
     "id": "s41",
     "text": "اطلبوا العلم ولو بالصين",
-    "url": "https://dorar.net/fake/11",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D8%B7%D9%84%D8%A8%D9%88%D8%A7%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%20%D9%88%D9%84%D9%88%20%D8%A8%D8%A7%D9%84%D8%B5%D9%8A%D9%86",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -330,7 +330,7 @@
   {
     "id": "s42",
     "text": "إياكم وخضراء الدمن. قيل: وما خضراء الدمن؟ قال: المرأة الحسناء في المنبت السوء",
-    "url": "https://dorar.net/fake/12",
+    "url": "https://dorar.net/hadith/search?q=%D8%A5%D9%8A%D8%A7%D9%83%D9%85%20%D9%88%D8%AE%D8%B6%D8%B1%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AF%D9%85%D9%86.%20%D9%82%D9%8A%D9%84%3A%20%D9%88%D9%85%D8%A7%20%D8%AE%D8%B6%D8%B1%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AF%D9%85%D9%86%D8%9F",
     "ruling": "ضعيف جدا",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -338,7 +338,7 @@
   {
     "id": "s43",
     "text": "الجنة تحت أقدام الأمهات",
-    "url": "https://dorar.net/fake/13",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%AC%D9%86%D8%A9%20%D8%AA%D8%AD%D8%AA%20%D8%A3%D9%82%D8%AF%D8%A7%D9%85%20%D8%A7%D9%84%D8%A3%D9%85%D9%87%D8%A7%D8%AA",
     "ruling": "موضوع بهذا اللفظ",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -346,7 +346,7 @@
   {
     "id": "s44",
     "text": "خير الأسماء ما حمد وعبد",
-    "url": "https://dorar.net/fake/14",
+    "url": "https://dorar.net/hadith/search?q=%D8%AE%D9%8A%D8%B1%20%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D8%A7%D8%A1%20%D9%85%D8%A7%20%D8%AD%D9%85%D8%AF%20%D9%88%D8%B9%D8%A8%D8%AF",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -354,7 +354,7 @@
   {
     "id": "s45",
     "text": "الدين المعاملة",
-    "url": "https://dorar.net/fake/15",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%AF%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D9%85%D9%84%D8%A9",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -362,7 +362,7 @@
   {
     "id": "s46",
     "text": "الساكت عن الحق شيطان أخرس",
-    "url": "https://dorar.net/fake/16",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B3%D8%A7%D9%83%D8%AA%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AD%D9%82%20%D8%B4%D9%8A%D8%B7%D8%A7%D9%86%20%D8%A3%D8%AE%D8%B1%D8%B3",
     "ruling": "ليس بحديث (مقولة لأبي علي الدقاق)",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -370,7 +370,7 @@
   {
     "id": "s47",
     "text": "من لم يهتم بأمر المسلمين فليس منهم",
-    "url": "https://dorar.net/fake/17",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D9%84%D9%85%20%D9%8A%D9%87%D8%AA%D9%85%20%D8%A8%D8%A3%D9%85%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%D9%8A%D9%86%20%D9%81%D9%84%D9%8A%D8%B3%20%D9%85%D9%86%D9%87%D9%85",
     "ruling": "ضعيف",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -378,7 +378,7 @@
   {
     "id": "s48",
     "text": "لا صلاة لجار المسجد إلا في المسجد",
-    "url": "https://dorar.net/fake/18",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D8%A7%20%D8%B5%D9%84%D8%A7%D8%A9%20%D9%84%D8%AC%D8%A7%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D8%AC%D8%AF%20%D8%A5%D9%84%D8%A7%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D8%B3%D8%AC%D8%AF",
     "ruling": "ضعيف",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -386,7 +386,7 @@
   {
     "id": "s49",
     "text": "الأقربون أولى بالمعروف",
-    "url": "https://dorar.net/fake/19",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%A3%D9%82%D8%B1%D8%A8%D9%88%D9%86%20%D8%A3%D9%88%D9%84%D9%89%20%D8%A8%D8%A7%D9%84%D9%85%D8%B9%D8%B1%D9%88%D9%81",
     "ruling": "ليس بحديث",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -394,7 +394,7 @@
   {
     "id": "s50",
     "text": "من كثر ضحكه قلت هيبته",
-    "url": "https://dorar.net/fake/20",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D9%83%D8%AB%D8%B1%20%D8%B6%D8%AD%D9%83%D9%87%20%D9%82%D9%84%D8%AA%20%D9%87%D9%8A%D8%A8%D8%AA%D9%87",
     "ruling": "ليس بحديث (من أقوال عمر بن الخطاب)",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -402,7 +402,7 @@
   {
     "id": "s51",
     "text": "لا تتمارضوا فتمرضوا، ولا تحفروا قبوركم فتموتوا",
-    "url": "https://dorar.net/fake/21",
+    "url": "https://dorar.net/hadith/search?q=%D9%84%D8%A7%20%D8%AA%D8%AA%D9%85%D8%A7%D8%B1%D8%B6%D9%88%D8%A7%20%D9%81%D8%AA%D9%85%D8%B1%D8%B6%D9%88%D8%A7%D8%8C%20%D9%88%D9%84%D8%A7%20%D8%AA%D8%AD%D9%81%D8%B1%D9%88%D8%A7%20%D9%82%D8%A8%D9%88%D8%B1%D9%83%D9%85%20%D9%81%D8%AA%D9%85%D9%88%D8%AA%D9%88%D8%A7",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -410,7 +410,7 @@
   {
     "id": "s52",
     "text": "الباذنجان لما أكل له",
-    "url": "https://dorar.net/fake/22",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%A8%D8%A7%D8%B0%D9%86%D8%AC%D8%A7%D9%86%20%D9%84%D9%85%D8%A7%20%D8%A3%D9%83%D9%84%20%D9%84%D9%87",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -418,7 +418,7 @@
   {
     "id": "s53",
     "text": "من قلد عالما لقي الله سالما",
-    "url": "https://dorar.net/fake/23",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D9%82%D9%84%D8%AF%20%D8%B9%D8%A7%D9%84%D9%85%D8%A7%20%D9%84%D9%82%D9%8A%20%D8%A7%D9%84%D9%84%D9%87%20%D8%B3%D8%A7%D9%84%D9%85%D8%A7",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -426,7 +426,7 @@
   {
     "id": "s54",
     "text": "تفكر ساعة خير من عبادة ستين سنة",
-    "url": "https://dorar.net/fake/24",
+    "url": "https://dorar.net/hadith/search?q=%D8%AA%D9%81%D9%83%D8%B1%20%D8%B3%D8%A7%D8%B9%D8%A9%20%D8%AE%D9%8A%D8%B1%20%D9%85%D9%86%20%D8%B9%D8%A8%D8%A7%D8%AF%D8%A9%20%D8%B3%D8%AA%D9%8A%D9%86%20%D8%B3%D9%86%D8%A9",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -434,7 +434,7 @@
   {
     "id": "s55",
     "text": "أنا مدينة العلم وعلي بابها",
-    "url": "https://dorar.net/fake/25",
+    "url": "https://dorar.net/hadith/search?q=%D8%A3%D9%86%D8%A7%20%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%20%D9%88%D8%B9%D9%84%D9%8A%20%D8%A8%D8%A7%D8%A8%D9%87%D8%A7",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -442,7 +442,7 @@
   {
     "id": "s56",
     "text": "العمل عبادة",
-    "url": "https://dorar.net/fake/26",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B9%D9%85%D9%84%20%D8%B9%D8%A8%D8%A7%D8%AF%D8%A9",
     "ruling": "ليس بحديث",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -450,7 +450,7 @@
   {
     "id": "s57",
     "text": "البر لا يبلى، والإثم لا ينسى، والديان لا يموت، فكن كما شئت، كما تدين تدان",
-    "url": "https://dorar.net/fake/27",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%A8%D8%B1%20%D9%84%D8%A7%20%D9%8A%D8%A8%D9%84%D9%89%D8%8C%20%D9%88%D8%A7%D9%84%D8%A5%D8%AB%D9%85%20%D9%84%D8%A7%20%D9%8A%D9%86%D8%B3%D9%89%D8%8C%20%D9%88%D8%A7%D9%84%D8%AF%D9%8A%D8%A7%D9%86",
     "ruling": "ضعيف",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -458,7 +458,7 @@
   {
     "id": "s58",
     "text": "النظافة نصف الدين",
-    "url": "https://dorar.net/fake/28",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%81%D8%A9%20%D9%86%D8%B5%D9%81%20%D8%A7%D9%84%D8%AF%D9%8A%D9%86",
     "ruling": "موضوع",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -466,7 +466,7 @@
   {
     "id": "s59",
     "text": "من تعلم لغة قوم أمن مكرهم",
-    "url": "https://dorar.net/fake/29",
+    "url": "https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%AA%D8%B9%D9%84%D9%85%20%D9%84%D8%BA%D8%A9%20%D9%82%D9%88%D9%85%20%D8%A3%D9%85%D9%86%20%D9%85%D9%83%D8%B1%D9%87%D9%85",
     "ruling": "لا أصل له",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -474,7 +474,7 @@
   {
     "id": "s60",
     "text": "الضرورات تبيح المحظورات",
-    "url": "https://dorar.net/fake/30",
+    "url": "https://dorar.net/hadith/search?q=%D8%A7%D9%84%D8%B6%D8%B1%D9%88%D8%B1%D8%A7%D8%AA%20%D8%AA%D8%A8%D9%8A%D8%AD%20%D8%A7%D9%84%D9%85%D8%AD%D8%B8%D9%88%D8%B1%D8%A7%D8%AA",
     "ruling": "ليس بحديث بل قاعدة فقهية",
     "source": "dorar.net/hadith",
     "type": "hadith"
@@ -482,7 +482,7 @@
   {
     "id": "s61",
     "text": "إياك نعبد وإياك نستعين",
-    "url": "https://quranpedia.net/surah/1/5",
+    "url": "https://quranpedia.net/tafsir/al-fatiha/5",
     "ruling": "نص قرآني (سورة الفاتحة)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -490,7 +490,7 @@
   {
     "id": "s62",
     "text": "إن مع العسر يسرا",
-    "url": "https://quranpedia.net/surah/94/6",
+    "url": "https://quranpedia.net/tafsir/ash-sharh/6",
     "ruling": "نص قرآني (سورة الشرح)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -498,7 +498,7 @@
   {
     "id": "s63",
     "text": "قل هو الله أحد",
-    "url": "https://quranpedia.net/surah/112/1",
+    "url": "https://quranpedia.net/tafsir/al-ikhlas/1",
     "ruling": "نص قرآني (سورة الإخلاص)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -506,7 +506,7 @@
   {
     "id": "s64",
     "text": "وقضى ربك ألا تعبدوا إلا إياه وبالوالدين إحسانا",
-    "url": "https://quranpedia.net/surah/17/23",
+    "url": "https://quranpedia.net/tafsir/al-isra/23",
     "ruling": "نص قرآني (سورة الإسراء)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -514,7 +514,7 @@
   {
     "id": "s65",
     "text": "يا أيها الذين آمنوا استعينوا بالصبر والصلاة إن الله مع الصابرين",
-    "url": "https://quranpedia.net/surah/2/153",
+    "url": "https://quranpedia.net/tafsir/al-baqara/153",
     "ruling": "نص قرآني (سورة البقرة)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -522,7 +522,7 @@
   {
     "id": "s66",
     "text": "فمن يعمل مثقال ذرة خيرا يره",
-    "url": "https://quranpedia.net/surah/99/7",
+    "url": "https://quranpedia.net/tafsir/az-zalzala/7",
     "ruling": "نص قرآني (سورة الزلزلة)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -530,7 +530,7 @@
   {
     "id": "s67",
     "text": "وما خلقت الجن والإنس إلا ليعبدون",
-    "url": "https://quranpedia.net/surah/51/56",
+    "url": "https://quranpedia.net/tafsir/adh-dhariyat/56",
     "ruling": "نص قرآني (سورة الذاريات)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -538,7 +538,7 @@
   {
     "id": "s68",
     "text": "ولا تقربوا الزنا إنه كان فاحشة وساء سبيلا",
-    "url": "https://quranpedia.net/surah/17/32",
+    "url": "https://quranpedia.net/tafsir/al-isra/32",
     "ruling": "نص قرآني (سورة الإسراء)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -546,7 +546,7 @@
   {
     "id": "s69",
     "text": "إن الدين عند الله الإسلام",
-    "url": "https://quranpedia.net/surah/3/19",
+    "url": "https://quranpedia.net/tafsir/aal-imran/19",
     "ruling": "نص قرآني (سورة آل عمران)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -554,7 +554,7 @@
   {
     "id": "s70",
     "text": "اقرأ باسم ربك الذي خلق",
-    "url": "https://quranpedia.net/surah/96/1",
+    "url": "https://quranpedia.net/tafsir/al-alaq/1",
     "ruling": "نص قرآني (سورة العلق)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -562,7 +562,7 @@
   {
     "id": "s71",
     "text": "إن الله وملائكته يصلون على النبي يا أيها الذين آمنوا صلوا عليه وسلموا تسليما",
-    "url": "https://quranpedia.net/surah/33/56",
+    "url": "https://quranpedia.net/tafsir/al-ahzab/56",
     "ruling": "نص قرآني (سورة الأحزاب)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -570,7 +570,7 @@
   {
     "id": "s72",
     "text": "لا يكلف الله نفسا إلا وسعها لها ما كسبت وعليها ما اكتسبت",
-    "url": "https://quranpedia.net/surah/2/286",
+    "url": "https://quranpedia.net/tafsir/al-baqara/286",
     "ruling": "نص قرآني (سورة البقرة)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -578,7 +578,7 @@
   {
     "id": "s73",
     "text": "ويقولون متى هذا الوعد إن كنتم صادقين",
-    "url": "https://quranpedia.net/surah/67/25",
+    "url": "https://quranpedia.net/tafsir/yunus/48",
     "ruling": "نص قرآني (سورة الملك وغيرها)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -586,7 +586,7 @@
   {
     "id": "s74",
     "text": "كل نفس ذائقة الموت وإنما توفون أجوركم يوم القيامة",
-    "url": "https://quranpedia.net/surah/3/185",
+    "url": "https://quranpedia.net/tafsir/aal-imran/185",
     "ruling": "نص قرآني (سورة آل عمران)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -594,7 +594,7 @@
   {
     "id": "s75",
     "text": "وإذا سألك عبادي عني فإني قريب أجيب دعوة الداع إذا دعان",
-    "url": "https://quranpedia.net/surah/2/186",
+    "url": "https://quranpedia.net/tafsir/al-baqara/186",
     "ruling": "نص قرآني (سورة البقرة)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -602,7 +602,7 @@
   {
     "id": "s76",
     "text": "يا أيها الذين آمنوا اتقوا الله وقولوا قولا سديدا",
-    "url": "https://quranpedia.net/surah/33/70",
+    "url": "https://quranpedia.net/tafsir/al-ahzab/70",
     "ruling": "نص قرآني (سورة الأحزاب)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -610,23 +610,23 @@
   {
     "id": "s77",
     "text": "الذين آمنوا وتطمئن قلوبهم بذكر الله ألا بذكر الله تطمئن القلوب",
-    "url": "https://quranpedia.net/surah/13/28",
+    "url": "https://quranpedia.net/tafsir/ar-rad/28",
     "ruling": "نص قرآني (سورة الرعد)",
     "source": "quranpedia.net",
     "type": "quran"
   },
   {
     "id": "s78",
-    "text": "ومن يتق الله يجعل له مخرجا ويرزقه من حيث لا يحتسب",
-    "url": "https://quranpedia.net/surah/65/2",
+    "text": "وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ ۚ إِنَّ اللَّهَ بَالِغُ أَمْرِهِ ۚ قَدْ جَعَلَ اللَّهُ لِكُلِّ شَيْءٍ قَدْرًا",
+    "url": "https://quranpedia.net/tafsir/at-talaq/3?book=331#tafsir",
     "ruling": "نص قرآني (سورة الطلاق)",
     "source": "quranpedia.net",
     "type": "quran"
   },
   {
     "id": "s79",
-    "text": "وأقم الصلاة إن الصلاة تنهى عن الفحشاء والمنكر",
-    "url": "https://quranpedia.net/surah/29/45",
+    "text": "اتْلُ مَا أُوحِيَ إِلَيْكَ مِنَ الْكِتَابِ وَأَقِمِ الصَّلَاةَ ۖ إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنْكَرِ ۗ وَلَذِكْرُ اللَّهِ أَكْبَرُ ۗ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُونَ",
+    "url": "https://quranpedia.net/tafsir/al-ankabut/45",
     "ruling": "نص قرآني (سورة العنكبوت)",
     "source": "quranpedia.net",
     "type": "quran"
@@ -634,7 +634,7 @@
   {
     "id": "s80",
     "text": "ولسوف يعطيك ربك فترضى",
-    "url": "https://quranpedia.net/surah/93/5",
+    "url": "https://quranpedia.net/tafsir/ad-duha/5",
     "ruling": "نص قرآني (سورة الضحى)",
     "source": "quranpedia.net",
     "type": "quran"
