@@ -42,6 +42,12 @@ def _cosine(a: list[float], b: list[float]) -> float:
     return sum(x * y for x, y in zip(a, b))
 
 
+def _sim_threshold() -> float:
+    if config.EMBED_PROVIDER == "openai":
+        return config.MIN_SIM_OPENAI
+    return config.MIN_SIM
+
+
 def _to_evidence(d: dict) -> Evidence:
     return Evidence(
         source=d.get("source", ""),
@@ -67,8 +73,9 @@ def retrieve(normalized_query: str, k: int | None = None) -> list[Evidence]:
     else:
         # مطابقة دلالية: cosine على المتجهات (بادئة query لـ e5)
         qv = embed([normalized_query], kind="query")[0]
+        thr = _sim_threshold()
         scored = [(d, _cosine(qv, v)) for d, v in zip(_DOCS, _VECS or [])]
-        scored = [(d, s) for d, s in scored if s >= config.MIN_SIM]
+        scored = [(d, s) for d, s in scored if s >= thr]
 
     scored.sort(key=lambda t: t[1], reverse=True)
     return [_to_evidence(d) for d, _s in scored[:k]]

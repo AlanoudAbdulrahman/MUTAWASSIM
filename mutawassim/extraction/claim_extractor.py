@@ -56,8 +56,9 @@ def _split_extract(post: Post) -> list[Claim]:
 
 def extract_claims(post: Post) -> list[Claim]:
     """يرجّع list[Claim] من منشور واحد."""
-    # وضع MOCK أو غياب مفتاح LLM -> استخراج حتمي (يتيح اختبار الاسترجاع الدلالي بلا مفتاح)
-    if config.MOCK_MODE or not config.LLM_API_KEY:
+    # الاستخراج الحتمي هو الافتراضي: يحفظ النص الأصلي فتبقى المطابقة دقيقة.
+    # الـLLM يُستخدم فقط إذا فُعّل صراحةً (USE_LLM_EXTRACT=1) ومتاح.
+    if config.MOCK_MODE or not config.LLM_API_KEY or not config.USE_LLM_EXTRACT:
         return _split_extract(post)
 
     data = chat_json(_SYSTEM, post.text)

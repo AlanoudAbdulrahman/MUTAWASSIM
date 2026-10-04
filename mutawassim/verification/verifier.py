@@ -13,6 +13,7 @@ from __future__ import annotations
 from ..schemas import Claim, Evidence, VerificationResult
 from .. import config
 from ..retrieval.retriever import retrieve
+from ..retrieval.arabic import coverage
 from ..llm import chat_json
 
 _SYSTEM = (
@@ -60,17 +61,25 @@ def verify(claim: Claim) -> VerificationResult:
             confidence=conf, note="MOCK: مشتقّ من حكم أقرب مصدر",
         )
 
-    # بلا مفتاح LLM: استرجاع e5 دلالي + حكم من درجة المصدر (هبوط آمن)
-    if not config.LLM_API_KEY:
-        top = evidence[0]
+    top = evidence[0]
+    q = claim.normalized_query or claim.text
+    exact = coverage(q, top.snippet) >= config.MIN_COVERAGE
+
+    # تطابق لفظي دقيق، أو غياب مفتاح LLM -> حكم حتمي من درجة المصدر
+    # (دقيق وسريع؛ نحتفظ بالـLLM للحالات الدلالية الغامضة فقط)
+    if exact or not config.LLM_API_KEY:
         status = _status_from_ruling(top.ruling) or "needs_review"
-        conf = 0.75 if status != "needs_review" else 0.3
+        conf = 0.85 if status != "needs_review" else 0.3
+        note = (
+            "تطابق لفظي دقيق: حكم من درجة المصدر" if exact
+            else "استرجاع دلالي + حكم من درجة المصدر (بلا LLM)"
+        )
         return VerificationResult(
             claim_id=claim.claim_id, status=status, evidence=evidence[:3],
-            confidence=conf, note="استرجاع دلالي (e5) + حكم من المصدر (بلا LLM)",
+            confidence=conf, note=note,
         )
 
-    # المسار الحقيقي الكامل: LLM مقيّد بالأدلة
+    # المسار الحقيقي الكامل (حالة دلالية غامضة): LLM مقيّد بالأدلة
     ev_text = "\n".join(f"- [{e.ruling}] {e.snippet} ({e.url})" for e in evidence)
     data = chat_json(_SYSTEM, f"الادعاء: {claim.text}\n\nالأدلة:\n{ev_text}")
     status = data.get("status", "needs_review")

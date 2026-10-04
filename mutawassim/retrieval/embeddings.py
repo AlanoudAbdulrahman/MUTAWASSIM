@@ -3,10 +3,10 @@ embeddings.py — توليد المتجهات.
 المالك: غيداء (التحقق/الاسترجاع).
 
 MOCK: متجه حتمي بسيط (hashing) يعمل بلا تنزيل نماذج.
-الحقيقي: sentence-transformers بنموذج عربي.
-
-ملاحظة e5: نماذج intfloat/e5 تتطلب بادئة "query: " للاستعلام و"passage: "
-للمصدر — نضيفها تلقائيًا عند استخدام نموذج e5 فقط.
+الحقيقي: مزوّدان قابلان للتبديل عبر EMBED_PROVIDER:
+  - openai: text-embedding-3-small عبر الـAPI (بلا torch) — الأنسب على ويندوز.
+  - local : sentence-transformers/e5 محليًا (يتطلب torch). e5 يحتاج بادئة
+            "query: " للاستعلام و"passage: " للمصدر — تُضاف تلقائيًا.
 """
 from __future__ import annotations
 
@@ -15,7 +15,8 @@ import hashlib
 from .. import config
 
 _DIM = 256
-_model = None
+_model = None   # نموذج محلي (local)
+_oai = None     # عميل OpenAI (openai)
 
 
 def _mock_embed(text: str) -> list[float]:
@@ -27,14 +28,31 @@ def _mock_embed(text: str) -> list[float]:
     return [v / norm for v in vec]
 
 
+def _normalize(v: list[float]) -> list[float]:
+    n = sum(x * x for x in v) ** 0.5 or 1.0
+    return [x / n for x in v]
+
+
+def _openai_embed(texts: list[str]) -> list[list[float]]:
+    """متجهات عبر OpenAI (بلا torch). يتطلب LLM_API_KEY."""
+    global _oai
+    if not config.LLM_API_KEY:
+        raise RuntimeError("LLM_API_KEY مطلوب عند EMBED_PROVIDER=openai")
+    if _oai is None:
+        from openai import OpenAI
+        _oai = OpenAI(api_key=config.LLM_API_KEY)
+    # OpenAI يرفض النص الفارغ -> نستبدله بمسافة
+    inputs = [t if (t and t.strip()) else " " for t in texts]
+    resp = _oai.embeddings.create(model=config.OPENAI_EMBED_MODEL, input=inputs)
+    return [_normalize(d.embedding) for d in resp.data]
+
+
 def _is_e5() -> bool:
     return "e5" in config.EMBEDDING_MODEL.lower()
 
 
-def embed(texts: list[str], kind: str = "passage") -> list[list[float]]:
-    """يرجّع متجهًا لكل نص. kind: "passage" للمصادر، "query" للاستعلام (مهم لـ e5)."""
-    if config.MOCK_MODE:
-        return [_mock_embed(t) for t in texts]
+def _local_embed(texts: list[str], kind: str) -> list[list[float]]:
+    """متجهات محلية عبر sentence-transformers (e5). يتطلب torch."""
     global _model
     if _model is None:
         from sentence_transformers import SentenceTransformer
@@ -44,3 +62,12 @@ def embed(texts: list[str], kind: str = "passage") -> list[list[float]]:
         prefix = "query: " if kind == "query" else "passage: "
         inputs = [prefix + (t or "") for t in texts]
     return _model.encode(inputs, normalize_embeddings=True).tolist()
+
+
+def embed(texts: list[str], kind: str = "passage") -> list[list[float]]:
+    """يرجّع متجهًا لكل نص. kind: "passage" للمصادر، "query" للاستعلام (مهم لـ e5)."""
+    if config.MOCK_MODE:
+        return [_mock_embed(t) for t in texts]
+    if config.EMBED_PROVIDER == "openai":
+        return _openai_embed(texts)   # openai لا يحتاج بادئات
+    return _local_embed(texts, kind)
