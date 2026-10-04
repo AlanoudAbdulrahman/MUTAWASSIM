@@ -2,10 +2,13 @@
 retriever.py — الاسترجاع من المصادر المعتمدة.
 المالك: غيداء (التحقق/الاسترجاع).
 
-وضعان:
-- MOCK (بلا مفاتيح): مطابقة لفظية عربية ذكية (تطبيع + تجاهل الكلمات الشائعة)
-  عبر coverage — دقيقة للأحاديث القصيرة وتعيد المصدر المطابق فقط.
-- الحقيقي: embeddings دلالية + cosine (يمسك الصياغات المختلفة).
+MOCK (بلا مفاتيح): مطابقة لفظية عربية (coverage) — دقيقة للأحاديث القصيرة.
+
+الحقيقي = استرجاع هجين:
+  1) لفظي أولاً (coverage): يمسك الحديث نفسه بدرجته الصحيحة بدقة عالية.
+  2) دلالي احتياطيًا (embeddings + cosine): فقط عند غياب تطابق لفظي،
+     لالتقاط الصياغات المعاد صياغتها.
+الهجين يجمع دقة اللفظي مع تغطية الدلالي.
 المصادر تُحمّل من SOURCES_FILE ثم العيّنة الاحتياطية.
 """
 from __future__ import annotations
@@ -57,6 +60,18 @@ def _to_evidence(d: dict) -> Evidence:
     )
 
 
+def _lexical(query: str) -> list[tuple[dict, float]]:
+    scored = [(d, coverage(query, d.get("text", ""))) for d in _DOCS or []]
+    return [(d, s) for d, s in scored if s >= config.MIN_COVERAGE]
+
+
+def _semantic(query: str) -> list[tuple[dict, float]]:
+    qv = embed([query], kind="query")[0]
+    thr = _sim_threshold()
+    scored = [(d, _cosine(qv, v)) for d, v in zip(_DOCS or [], _VECS or [])]
+    return [(d, s) for d, s in scored if s >= thr]
+
+
 def retrieve(normalized_query: str, k: int | None = None) -> list[Evidence]:
     """يرجّع المصادر الأكثر صلة فقط (فوق العتبة)، مرتّبة تنازليًا."""
     global _DOCS, _VECS
@@ -67,15 +82,13 @@ def retrieve(normalized_query: str, k: int | None = None) -> list[Evidence]:
     k = k or config.RETRIEVE_K
 
     if config.MOCK_MODE:
-        # مطابقة لفظية عربية: coverage
-        scored = [(d, coverage(normalized_query, d.get("text", ""))) for d in _DOCS]
-        scored = [(d, s) for d, s in scored if s >= config.MIN_COVERAGE]
+        # وضع MOCK: لفظي فقط
+        scored = _lexical(normalized_query)
     else:
-        # مطابقة دلالية: cosine على المتجهات (بادئة query لـ e5)
-        qv = embed([normalized_query], kind="query")[0]
-        thr = _sim_threshold()
-        scored = [(d, _cosine(qv, v)) for d, v in zip(_DOCS, _VECS or [])]
-        scored = [(d, s) for d, s in scored if s >= thr]
+        # هجين: لفظي أولاً (دقيق)، ثم دلالي احتياطيًا (للصياغات المختلفة)
+        scored = _lexical(normalized_query)
+        if not scored:
+            scored = _semantic(normalized_query)
 
     scored.sort(key=lambda t: t[1], reverse=True)
     return [_to_evidence(d) for d, _s in scored[:k]]

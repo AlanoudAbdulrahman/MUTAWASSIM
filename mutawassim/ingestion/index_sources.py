@@ -7,7 +7,7 @@ except ImportError:
     HAS_CHROMA = False
     print("تنبيه: مكتبة chromadb غير مثبتة.")
 
-def build_index(docs_path="sources.json", persist_directory="./chroma_db"):
+def build_index(docs_path="mutawassim/data/sources/sources.json", persist_directory="./chroma_db"):
     """
     يبني فهرس Chroma من ملف المصادر الموحد باستخدام نماذج SentenceTransformers (sbert.net).
     """

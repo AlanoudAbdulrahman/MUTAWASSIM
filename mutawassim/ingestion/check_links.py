@@ -55,7 +55,7 @@ def verify_url(url, doc_id, retries=2):
         
     return (doc_id, url, "فشل الفحص بعد عدة محاولات")
 
-def check_links(sources_file="sources.json"):
+def check_links(sources_file="mutawassim/data/sources/sources.json"):
     print(f"--- جاري فحص صحة الروابط بشكل حقيقي في ملف {sources_file}... ---\n")
     print("نظام الفحص يعمل الآن بقدرات متقدمة (يستخدم HEAD ثم GET مع إعادة المحاولة).")
     print("قد يستغرق الفحص بعض الوقت بناءً على سرعة الاستجابة من الخوادم...\n")
