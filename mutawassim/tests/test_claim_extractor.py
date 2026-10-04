@@ -10,6 +10,8 @@ from mutawassim.schemas import Post
 @pytest.fixture
 def real_mode(monkeypatch):
     monkeypatch.setattr(extractor.config, "MOCK_MODE", False)
+    monkeypatch.setattr(extractor.config, "LLM_API_KEY", "test-key")
+    monkeypatch.setattr(extractor.config, "USE_LLM_EXTRACT", True)
 
 
 def test_prompt_roles_and_source_linkage(real_mode, monkeypatch):
@@ -127,3 +129,21 @@ def test_mock_does_not_call_provider(monkeypatch):
         Post(post_id="p", text="قال النبي إنما الأعمال بالنيات؟سورة الفاتحة سبع آيات")
     )
     assert [c.type for c in claims] == ["hadith", "quran"]
+
+
+@pytest.mark.parametrize("mock, key, use_llm", [
+    (False, "", True),          # no key
+    (False, "test-key", False),  # LLM extraction not enabled
+    (True, "test-key", True),    # MOCK wins
+])
+def test_llm_runs_only_when_fully_enabled(monkeypatch, mock, key, use_llm):
+    monkeypatch.setattr(extractor.config, "MOCK_MODE", mock)
+    monkeypatch.setattr(extractor.config, "LLM_API_KEY", key)
+    monkeypatch.setattr(extractor.config, "USE_LLM_EXTRACT", use_llm)
+
+    def unexpected(*_):
+        pytest.fail("LLM extraction must be explicitly enabled")
+
+    monkeypatch.setattr(extractor, "chat_json", unexpected)
+    claims = extractor.extract_claims(Post(post_id="p", text="سورة الفاتحة سبع آيات"))
+    assert [c.normalized_query for c in claims] == ["سورة الفاتحة سبع آيات"]

@@ -1,6 +1,8 @@
 """Extract verifiable religious claims without judging their truth.
 
-MOCK_MODE is a sentence-splitting integration stub, not semantic extraction.
+Sentence splitting is the default: it keeps the original wording so lexical
+matching in verification stays exact. The LLM prompt runs only when explicitly
+enabled (USE_LLM_EXTRACT=1) with a key and MOCK_MODE=0.
 """
 from __future__ import annotations
 
@@ -127,7 +129,7 @@ def extract_claims(post: Post) -> list[Claim]:
     if not post.text.strip():
         return []
 
-    if config.MOCK_MODE:
+    if config.MOCK_MODE or not config.LLM_API_KEY or not config.USE_LLM_EXTRACT:
         items = []
         for sentence in _SENT_SPLIT.split(post.text):
             text = sentence.strip()
