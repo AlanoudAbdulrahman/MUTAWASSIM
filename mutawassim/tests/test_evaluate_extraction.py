@@ -31,7 +31,8 @@ def test_perfect_extractor_scores_one(monkeypatch):
 
 def test_wrong_type_lowers_type_accuracy_only(monkeypatch):
     def wrong_type(post):
-        return [c.model_copy(update={"type": "other"}) for c in _gold_extractor(post)]
+        # "history" is not the expected type of any gold claim
+        return [c.model_copy(update={"type": "history"}) for c in _gold_extractor(post)]
 
     monkeypatch.setattr(ev, "extract_claims", wrong_type)
     m = ev.evaluate_extraction()

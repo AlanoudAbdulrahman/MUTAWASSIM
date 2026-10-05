@@ -157,14 +157,14 @@ Example output:
 }
 ```
 
-Possible statuses include:
+The statuses (defined in `mutawassim/schemas.py`) are:
 
-- Supported
-- Misleading
-- False
-- Weak
-- Needs Expert Review
-- Insufficient Evidence
+- `confirmed` — supported by an approved source
+- `weak` — the source grades it as weak
+- `fabricated` — fabricated, baseless, or not actually a hadith
+- `needs_review` — insufficient evidence; referred to an expert
+
+The status comes from the grading of the matched source (e.g. صحيح, ضعيف, موضوع, نص قرآني); ambiguous matches are judged by the LLM using the retrieved evidence only.
 
 When reliable evidence is unavailable, the system avoids generating an unsupported judgment.
 
@@ -210,6 +210,17 @@ Each report may include:
 - Review status
 
 The report generator relies only on retrieved evidence from approved sources to reduce hallucination and avoid unsupported religious judgments.
+
+Each claim gets a response card with an action:
+
+- **رد (respond)** — confirmed claims, and weak/fabricated claims outside sensitive topics
+- **إحالة لمختص (refer to an expert)** — claims without sufficient evidence, weak/fabricated claims about aqeedah or shubha, and questions asking for a religious ruling
+
+The cards can be exported as an Arabic PDF report (summary, risk-ordered cards, quoted evidence and source links):
+
+```bash
+python -m mutawassim.reporting.pdf_report posts.json -o report.pdf
+```
 
 ---
 
@@ -259,10 +270,13 @@ mutawassim/
 │   └── risk_score.py
 │
 ├── reporting/
-│   └── report_generator.py
+│   ├── report_generator.py
+│   ├── pdf_report.py
+│   └── fonts/
 │
 ├── evaluation/
-│   └── evaluate.py
+│   ├── evaluate.py
+│   └── evaluate_extraction.py
 │
 ├── api/
 │   └── main.py
@@ -369,6 +383,11 @@ Main metrics include:
 - Risk Classification Accuracy
 
 A verification result should only be considered valid when its cited evidence can be traced back to an approved source.
+
+```bash
+python -m mutawassim.evaluation.evaluate               # verification metrics on the labeled test set
+python -m mutawassim.evaluation.evaluate_extraction    # claim detection precision / recall / F1
+```
 
 ---
 

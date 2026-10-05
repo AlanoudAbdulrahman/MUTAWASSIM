@@ -26,9 +26,11 @@ _RULING_TO_STATUS = {
     "موضوع": "fabricated",
     "باطل": "fabricated",
     "لا أصل له": "fabricated",
+    "ليس بحديث": "fabricated",   # مقولة نُسبت للنبي ﷺ وليست من كلامه
     "ضعيف": "weak",
     "صحيح": "confirmed",
     "حسن": "confirmed",
+    "نص قرآني": "confirmed",     # آية مطابقة لمصدر قرآني (لا درجة للآيات)
 }
 
 
