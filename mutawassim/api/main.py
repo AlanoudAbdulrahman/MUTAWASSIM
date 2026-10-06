@@ -49,6 +49,9 @@ async def identity_and_headers(request: Request, call_next):
     response.headers.update(security.SECURITY_HEADERS)
     if request.url.path == "/docs":
         response.headers["Content-Security-Policy"] = security.DOCS_CSP
+    if not request.url.path.startswith(("/api/", "/fonts/", "/vendor/")):
+        # صفحات الموقع وملفاته: يتحقق المتصفح من النسخة كل مرة فيظهر آخر تعديل فورًا
+        response.headers["Cache-Control"] = "no-cache"
     return response
 
 

@@ -175,3 +175,28 @@ def test_failed_auto_evaluation_is_not_retried_for_the_same_code(monkeypatch):
 def test_auto_evaluation_can_be_disabled(monkeypatch, auto):
     monkeypatch.setattr(config, "AUTO_EVALUATE", auto)
     assert benchmark.ensure_fresh() is False
+
+
+def test_public_server_without_key_shows_the_real_results(monkeypatch):
+    # the public site has no server key: it shows the committed real-model results and never runs a benchmark
+    monkeypatch.setattr(config, "MOCK_MODE", False)
+    monkeypatch.setattr(config, "AUTO_EVALUATE", True)
+    monkeypatch.setattr(config, "LLM_API_KEY", "sk-owner-" + "x" * 30)
+    monkeypatch.setattr(benchmark, "run", lambda kind: benchmark._save(kind, {"total": 1}, benchmark.fingerprint()))
+    for kind in benchmark.KINDS:
+        benchmark.run(kind)
+    monkeypatch.setattr(config, "LLM_API_KEY", "")
+    s = benchmark.status()
+    assert s["mode"] == "real" and s["stale"] == [] and set(s["results"]) == set(benchmark.KINDS)
+    assert benchmark.ensure_fresh() is False
+
+
+def test_fingerprint_ignores_windows_line_endings(tmp_path, monkeypatch):
+    monkeypatch.setattr(benchmark, "_CODE_DIRS", ())
+    monkeypatch.setattr(benchmark, "_DATA_FILES", ())
+    monkeypatch.setattr(config, "ROOT", tmp_path)
+    monkeypatch.setattr(benchmark, "_CODE_FILES", ("x.py",))
+    (tmp_path / "x.py").write_bytes(b"a = 1\nb = 2\n")
+    linux = benchmark.fingerprint()
+    (tmp_path / "x.py").write_bytes(b"a = 1\r\nb = 2\r\n")
+    assert benchmark.fingerprint() == linux

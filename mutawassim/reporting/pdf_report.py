@@ -24,6 +24,7 @@ from fpdf.enums import MethodReturnValue, XPos, YPos
 from ..schemas import Claim, ResponseCard
 
 _FONTS = pathlib.Path(__file__).resolve().parent / "fonts"
+_LOGO = pathlib.Path(__file__).resolve().parents[1] / "web" / "logo.png"  # نفس شعار الموقع (أبيض لهيدر غامق)
 
 # ألوان الحالات (نفس ألوان اللوحة dashboard/app.py)
 _VERDICT_COLORS = {
@@ -196,11 +197,15 @@ def _draw_header(pdf: _ReportPDF, title: str, generated_at: _dt.datetime) -> Non
     pdf.rect(0, band_h, pdf.w, 1.2, style="F")
     pdf.rect(0, band_h + 2, pdf.w, 0.4, style="F")
 
-    pdf.set_text_color(*pdf.t["title"])
-    pdf.set_font("Tajawal", "B", 30)
-    pdf.set_xy(_MARGIN, 9)
-    # بلا تشكيل: الشدة مع الكسرة تقطع وصل الحروف في خط Tajawal العريض
-    pdf.cell(pdf.content_w, 14, "متوسم", align="R")
+    if _LOGO.exists():
+        logo_h = 20
+        pdf.image(str(_LOGO), x=pdf.w - _MARGIN - logo_h * 376 / 186, y=3.5, h=logo_h)
+    else:  # احتياط إن لم يوجد الشعار
+        pdf.set_text_color(*pdf.t["title"])
+        pdf.set_font("Tajawal", "B", 30)
+        pdf.set_xy(_MARGIN, 9)
+        # بلا تشكيل: الشدة مع الكسرة تقطع وصل الحروف في خط Tajawal العريض
+        pdf.cell(pdf.content_w, 14, "متوسم", align="R")
 
     pdf.set_font("Tajawal", "", 12)
     pdf.set_text_color(*pdf.t["subtitle"])

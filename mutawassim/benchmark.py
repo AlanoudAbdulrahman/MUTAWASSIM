@@ -31,7 +31,8 @@ _lock = threading.Lock()
 
 
 def mode_key() -> str:
-    return "mock" if config.MOCK_MODE or not config.LLM_API_KEY else "real"
+    # الموقع العام بلا مفتاح خادم يعرض نتائج النموذج الحقيقي المرفوعة مع الكود
+    return "mock" if config.MOCK_MODE else "real"
 
 
 def fingerprint() -> str:
@@ -43,12 +44,11 @@ def fingerprint() -> str:
     files += [config.DATA_DIR / f for f in _DATA_FILES]
     for f in files:
         if f.exists():
-            h.update(str(f.relative_to(root)).encode())
-            h.update(f.read_bytes())
+            h.update(f.relative_to(root).as_posix().encode())
+            h.update(f.read_bytes().replace(b"\r\n", b"\n"))  # نفس البصمة على ويندوز ولينكس
     settings = {k: getattr(config, k, None) for k in (
         "MOCK_MODE", "LLM_MODEL", "USE_LLM_EXTRACT", "EMBED_PROVIDER", "OPENAI_EMBED_MODEL",
         "RETRIEVE_K", "MIN_CONFIDENCE", "MIN_SIM", "MIN_SIM_OPENAI", "MIN_COVERAGE")}
-    settings["has_key"] = bool(config.LLM_API_KEY)
     h.update(json.dumps(settings, sort_keys=True).encode())
     return h.hexdigest()[:16]
 
@@ -106,8 +106,8 @@ def _worker(kinds: list[str], fp: str) -> None:
 
 def ensure_fresh() -> bool:
     """يبدأ قياسًا في الخلفية إذا تغيّرت البصمة. يرجّع True إذا بدأ (أو كان يعمل)."""
-    if not config.AUTO_EVALUATE:
-        return _state["running"]
+    if not config.AUTO_EVALUATE or (mode_key() == "real" and not config.LLM_API_KEY):
+        return _state["running"]  # لا مفتاح للقياس الحقيقي على هذا الخادم
     with _lock:
         if _state["running"]:
             return True

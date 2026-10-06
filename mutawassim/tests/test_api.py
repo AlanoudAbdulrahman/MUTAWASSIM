@@ -77,3 +77,9 @@ def test_evaluation_is_saved_and_reloaded(client):
 def test_every_page_has_its_own_link(path):
     r = TestClient(main.app).get(path)
     assert r.status_code == 200 and "/app.js" in r.text
+
+
+def test_site_files_are_revalidated_so_edits_show_immediately():
+    c = TestClient(main.app)
+    assert c.get("/app.js").headers["cache-control"] == "no-cache"
+    assert "cache-control" not in c.get("/vendor/htm.umd.js").headers
