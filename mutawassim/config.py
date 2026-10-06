@@ -53,3 +53,9 @@ MIN_CONFIDENCE: float = float(os.getenv("MIN_CONFIDENCE", "0.35"))
 MIN_SIM: float = float(os.getenv("MIN_SIM", "0.15"))  # أدنى تشابه دلالي (e5 المحلي)
 MIN_SIM_OPENAI: float = float(os.getenv("MIN_SIM_OPENAI", "0.45"))  # أدنى تشابه (openai، أساسه أعلى)
 MIN_COVERAGE: float = float(os.getenv("MIN_COVERAGE", "0.6"))  # أدنى تغطية لفظية (وضع MOCK)
+
+# الحفظ: قاعدة SQLite لسجل التحقق والانتشار عبر الزمن (غير مرفوعة)
+DB_FILE = pathlib.Path(os.getenv("DB_FILE") or DATA_DIR / "mutawassim.db")
+
+# القياس التلقائي: يُعاد قياس الأداء عند تغيّر الكود أو البيانات أو الإعدادات
+AUTO_EVALUATE: bool = os.getenv("AUTO_EVALUATE", "1") == "1"

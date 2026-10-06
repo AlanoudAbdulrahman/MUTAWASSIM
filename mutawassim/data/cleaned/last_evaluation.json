@@ -1,0 +1,50 @@
+{
+  "real": {
+    "verification": {
+      "mock_mode": false,
+      "total": 100,
+      "detection_precision": 1.0,
+      "detection_recall": 0.967,
+      "detection_f1": 0.983,
+      "status_accuracy": 0.98,
+      "citation_rate": 1.0,
+      "citation_accuracy": 1.0,
+      "no_claim": 1,
+      "errors": 0,
+      "failures": [
+        {
+          "i": 1,
+          "claim": "ومن يتق الله يجعل له مخرجا",
+          "expected": "confirmed",
+          "got": "needs_review"
+        },
+        {
+          "i": 38,
+          "claim": "الباذنجان لما أكل له",
+          "expected": "fabricated",
+          "got": "no_claim"
+        }
+      ],
+      "ran_at": "2026-10-06T12:31",
+      "fingerprint": "fa9be3ff5d701476",
+      "model": "gpt-4o-mini"
+    },
+    "extraction": {
+      "mock_mode": false,
+      "posts": 11,
+      "expected_claims": 8,
+      "predicted_claims": 8,
+      "matched_claims": 8,
+      "claim_precision": 1.0,
+      "claim_recall": 1.0,
+      "claim_f1": 1.0,
+      "type_accuracy": 0.875,
+      "no_claim_accuracy": 1.0,
+      "errors": 0,
+      "failures": [],
+      "ran_at": "2026-10-06T12:31",
+      "fingerprint": "fa9be3ff5d701476",
+      "model": "gpt-4o-mini"
+    }
+  }
+}

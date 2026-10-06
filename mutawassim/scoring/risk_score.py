@@ -38,6 +38,9 @@ def _spread_from_count(posts: int) -> float:
     return round(1 - _SPREAD_DECAY ** max(0, posts), 4)
 
 
+spread_from_count = _spread_from_count
+
+
 def compute_spread(claims: list[Claim]) -> dict[str, float]:
     """يرجّع {claim_id: spread} حسب عدد المنشورات المختلفة التي ذكرت نفس صيغة البحث."""
     posts_by_query: dict[str, set[str]] = defaultdict(set)

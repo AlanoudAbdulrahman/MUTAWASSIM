@@ -7,22 +7,28 @@ ENV PYTHONUNBUFFERED=1
 # تعيين مجلد العمل داخل الحاوية
 WORKDIR /app
 
-# تحديث النظام وتثبيت المتطلبات الأساسية
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+# الموقع يحتاج الأساسية + openai فقط (المكتبات الثقيلة في requirements-full.txt اختيارية)
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt openai
 
-# نسخ ملفات الاعتماديات أولاً (للاستفادة من طبقات الكاش في دوكر)
-COPY requirements.txt requirements-full.txt ./
-
-# تثبيت الاعتماديات
-# نستخدم requirements-full.txt لأنه يحتوي على كل المكتبات المطلوبة للنظام
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements-full.txt
-
-# نسخ باقي ملفات المشروع إلى الحاوية
+# نسخ باقي ملفات المشروع إلى الحاوية (.env وقاعدة السجل مستبعدة في .dockerignore)
 COPY . .
 
-# الأمر الافتراضي (يمكن تغييره لاحقاً لتشغيل لوحة Streamlit أو الخادم)
-CMD ["python", "-m", "mutawassim.pipeline"]
+# إعدادات الموقع العام — لا مفتاح هنا: كل زائر يدخل مفتاحه
+ENV MOCK_MODE=0 \
+    USE_LLM_EXTRACT=1 \
+    EMBED_PROVIDER=openai \
+    SERVER_KEY_FOR=none \
+    TRUST_LOCALHOST=0 \
+    EXPOSE_DOCS=0 \
+    AUTO_EVALUATE=0 \
+    PORT=8000
+
+# سجل التحقق يُحفظ هنا؛ اربطوه بـ volume حتى لا يُمسح عند إعادة تشغيل الحاوية
+VOLUME ["/app/mutawassim/data/history"]
+ENV DB_FILE=/app/mutawassim/data/history/mutawassim.db
+
+EXPOSE 8000
+
+# --proxy-headers: خلف HTTPS الاستضافة يرى الخادم الاتصال آمنًا فيقبل مفاتيح الزوار
+CMD uvicorn mutawassim.api.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --forwarded-allow-ips="*"

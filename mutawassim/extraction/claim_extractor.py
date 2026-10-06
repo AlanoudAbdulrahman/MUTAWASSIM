@@ -11,7 +11,7 @@ import re
 from typing import get_args
 
 from .. import config
-from ..llm import chat_json
+from ..llm import chat_json, has_key
 from ..schemas import Claim, ClaimType, Post
 
 _SENT_SPLIT = re.compile(r"[.!؟?\n]+")
@@ -68,6 +68,11 @@ other: ادعاء ديني قابل للتحقق لا يناسب الأنواع 
 المنشور: قال النبي: إنما الأعمال بالنيات. أحب هذا الحديث جدًا.
 الناتج: {"claims":[{"text":"قال النبي: إنما الأعمال بالنيات",
 "type":"hadith","normalized_query":"إنما الأعمال بالنيات"}]}
+
+مثال (آية مقتبسة في سياق شخصي ما زالت ادعاءً قابلًا للتحقق):
+المنشور: دايم أردد ربنا آتنا في الدنيا حسنة وأحس بالراحة
+الناتج: {"claims":[{"text":"ربنا آتنا في الدنيا حسنة",
+"type":"quran","normalized_query":"ربنا آتنا في الدنيا حسنة"}]}
 
 مثال:
 المنشور: أحب قراءة القرآن. اللهم ارزقنا الطمأنينة.
@@ -155,7 +160,7 @@ def extract_claims(post: Post) -> list[Claim]:
     if not post.text.strip():
         return []
 
-    if config.MOCK_MODE or not config.LLM_API_KEY or not config.USE_LLM_EXTRACT:
+    if config.MOCK_MODE or not has_key() or not config.USE_LLM_EXTRACT:
         items = []
         for sentence in _SENT_SPLIT.split(post.text):
             text = sentence.strip()

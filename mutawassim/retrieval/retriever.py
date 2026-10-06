@@ -34,11 +34,14 @@ def _load_sources() -> list[dict]:
 def build_index() -> int:
     """يحمّل المصادر (ويبني المتجهات في الوضع الحقيقي). يرجّع عددها."""
     global _DOCS, _VECS
-    _DOCS = _load_sources()
-    _VECS = None
-    if not config.MOCK_MODE and _DOCS:
-        _VECS = embed([d.get("text", "") for d in _DOCS], kind="passage")
-    return len(_DOCS)
+    docs = _load_sources()
+    vecs = None
+    if not config.MOCK_MODE and docs:
+        # تُحسب المتجهات قبل الحفظ: لو فشلت (مفتاح خاطئ مثلًا) لا يبقى فهرس بلا متجهات
+        # يُعطّل البحث بالمعنى بصمت لكل من بعده؛ تُعاد المحاولة في الطلب التالي
+        vecs = embed([d.get("text", "") for d in docs], kind="passage")
+    _DOCS, _VECS = docs, vecs
+    return len(docs)
 
 
 def _cosine(a: list[float], b: list[float]) -> float:

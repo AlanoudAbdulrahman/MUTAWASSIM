@@ -379,17 +379,29 @@ def load_posts(path: str | pathlib.Path) -> list[dict]:
     - JSON مجموعة الاختبار [{claim_text, ...}]
     - Markdown منشورات الديمو: أسطر مرقّمة بين علامتي تنصيص  1. "نص المنشور"
     """
+    path = pathlib.Path(path)
+    return parse_posts(path.name, path.read_text(encoding="utf-8-sig"))
+
+
+def parse_posts(filename: str, content: str) -> list[dict]:
+    """مثل load_posts لكن من نص الملف مباشرة (للرفع من الموقع). يدعم أيضًا CSV بعمود text."""
+    import csv
+    import io
     import json
     import re
 
-    path = pathlib.Path(path)
-    content = path.read_text(encoding="utf-8-sig")
-    if path.suffix.lower() == ".md":
+    stem, _, suffix = filename.rpartition(".")
+    stem, suffix = (stem or filename), suffix.lower()
+    content = content.lstrip("﻿")
+    if suffix == "md":
         texts = re.findall(r'^\s*\d+\.\s*"(.+)"\s*$', content, re.M)
-        return [{"post_id": f"{path.stem}_{i:02d}", "text": t} for i, t in enumerate(texts, 1)]
-    rows = json.loads(content)
+        return [{"post_id": f"{stem}_{i:02d}", "text": t} for i, t in enumerate(texts, 1)]
+    if suffix == "csv":
+        rows = list(csv.DictReader(io.StringIO(content)))
+    else:
+        rows = json.loads(content)
     return [
-        {"post_id": r.get("post_id") or f"{path.stem}_{i:03d}", "text": r.get("text") or r.get("claim_text", "")}
+        {"post_id": r.get("post_id") or f"{stem}_{i:03d}", "text": r.get("text") or r.get("claim_text", "")}
         for i, r in enumerate(rows, 1)
     ]
 
@@ -398,10 +410,7 @@ def main(argv: list[str] | None = None) -> pathlib.Path:
     import argparse
 
     from .. import config
-    from ..extraction.claim_extractor import extract_claims
-    from ..ingestion.classifier import filter_posts
-    from ..ingestion.cleaner import clean_posts
-    from ..pipeline import run_pipeline
+    from ..pipeline import run_pipeline_detailed
 
     parser = argparse.ArgumentParser(description="تصدير تقرير متوسّم إلى PDF")
     parser.add_argument("posts", nargs="?", default=str(config.DATA_DIR / "raw" / "posts.sample.json"),
@@ -411,9 +420,9 @@ def main(argv: list[str] | None = None) -> pathlib.Path:
     args = parser.parse_args(argv)
 
     raw = load_posts(args.posts)
-    cards = run_pipeline(raw)
-    # نص الادعاءات للعرض فقط؛ الاستخراج الافتراضي حتمي فتتطابق المعرّفات مع البطاقات
-    claims = [c for p in filter_posts(clean_posts(raw)) for c in extract_claims(p)]
+    items = run_pipeline_detailed(raw)
+    cards = [i.card for i in items]
+    claims = [i.claim for i in items]
 
     out = pathlib.Path(args.output)
     out.write_bytes(render_pdf(cards, claims, theme=args.theme))

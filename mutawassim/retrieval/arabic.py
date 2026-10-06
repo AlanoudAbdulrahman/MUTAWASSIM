@@ -59,6 +59,11 @@ def _negated(text: str) -> set[str]:
     return out
 
 
+def negation_conflict(query: str, doc: str) -> bool:
+    """كلمة مشتركة منفية في أحد النصين دون الآخر («يؤمن» مقابل «لا يؤمن»)."""
+    return bool((_negated(query) ^ _negated(doc)) & tokens(query) & tokens(doc))
+
+
 def coverage(query: str, doc: str) -> float:
     """نسبة كلمات الاستعلام المميّزة الموجودة في المصدر (0..1).
     إن نُفيت في أحد النصين كلمةٌ مشتركة دون الآخر تُنصّف النتيجة فلا تُعدّ تطابقًا
@@ -67,7 +72,6 @@ def coverage(query: str, doc: str) -> float:
     if not q:
         return 0.0
     score = len(q & d) / len(q)
-    shared = q & d
-    if (_negated(query) ^ _negated(doc)) & shared:
+    if negation_conflict(query, doc):
         score /= 2
     return score
