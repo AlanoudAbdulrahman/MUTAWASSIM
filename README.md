@@ -214,7 +214,9 @@ The report generator relies only on retrieved evidence from approved sources to 
 Each claim gets a response card with an action:
 
 - **رد (respond)** — confirmed claims, and weak/fabricated claims outside sensitive topics
-- **إحالة لمختص (refer to an expert)** — claims without sufficient evidence, weak/fabricated claims about aqeedah or shubha, and questions asking for a religious ruling
+- **إحالة لمختص (refer to an expert)** — claims without sufficient evidence, weak/fabricated claims about aqeedah or shubha, and questions asking for a religious ruling (the card states that the system never issues fatwas)
+
+Questions about whether a quoted text is authentic ("is this really a hadith?") are verified like any other claim; purely informational questions and requests to interpret dreams are ignored.
 
 The cards can be exported as an Arabic PDF report (summary, risk-ordered cards, quoted evidence and source links):
 

@@ -30,6 +30,9 @@ venv/
 env/
 .env/
 
+# Secrets — never copy API keys into the image
+.env
+
 # IDEs and Editors
 .vscode/
 .idea/

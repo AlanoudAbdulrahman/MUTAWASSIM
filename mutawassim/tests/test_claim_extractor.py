@@ -147,3 +147,9 @@ def test_llm_runs_only_when_fully_enabled(monkeypatch, mock, key, use_llm):
     monkeypatch.setattr(extractor, "chat_json", unexpected)
     claims = extractor.extract_claims(Post(post_id="p", text="سورة الفاتحة سبع آيات"))
     assert [c.normalized_query for c in claims] == ["سورة الفاتحة سبع آيات"]
+
+
+def test_prompt_uses_the_question_prefixes_the_report_expects():
+    from mutawassim.reporting.report_generator import QUESTION_NOTES
+    for prefix in QUESTION_NOTES:
+        assert prefix in extractor._SYSTEM_PROMPT

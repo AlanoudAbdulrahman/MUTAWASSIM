@@ -172,10 +172,6 @@
     "expected_status": "needs_review"
   },
   {
-    "claim_text": "رأيت في المنام سقوط أسناني، ما التفسير؟",
-    "expected_status": "needs_review"
-  },
-  {
     "claim_text": "المسلم من سلم المسلمون من لسانه",
     "expected_status": "confirmed"
   },
@@ -398,5 +394,9 @@
   {
     "claim_text": "المعدة بيت الداء",
     "expected_status": "fabricated"
+  },
+  {
+    "claim_text": "من دل على خير فله مثل أجر فاعله",
+    "expected_status": "confirmed"
   }
 ]

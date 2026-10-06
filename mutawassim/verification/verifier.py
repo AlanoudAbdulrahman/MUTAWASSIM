@@ -10,7 +10,9 @@ MOCK: يشتق الحالة من حكم أقرب دليل (موضوع->fabricate
 """
 from __future__ import annotations
 
-from ..schemas import Claim, Evidence, VerificationResult
+from typing import get_args
+
+from ..schemas import Claim, Evidence, Status, VerificationResult
 from .. import config
 from ..retrieval.retriever import retrieve
 from ..retrieval.arabic import coverage
@@ -21,6 +23,8 @@ _SYSTEM = (
     '{"status":"confirmed|weak|fabricated|needs_review","confidence":0..1,"note":"..."}. '
     "لا تستخدم معرفتك الخاصة. إن لم تكفِ الأدلة أعد needs_review."
 )
+
+_VALID_STATUSES = frozenset(get_args(Status))
 
 _RULING_TO_STATUS = {
     "موضوع": "fabricated",
@@ -84,11 +88,22 @@ def verify(claim: Claim) -> VerificationResult:
     # المسار الحقيقي الكامل (حالة دلالية غامضة): LLM مقيّد بالأدلة
     ev_text = "\n".join(f"- [{e.ruling}] {e.snippet} ({e.url})" for e in evidence)
     data = chat_json(_SYSTEM, f"الادعاء: {claim.text}\n\nالأدلة:\n{ev_text}")
-    status = data.get("status", "needs_review")
-    conf = float(data.get("confidence", 0.0))
+    if not isinstance(data, dict):
+        data = {}
+    # رد النموذج غير موثوق الصيغة: حالة غير معروفة أو ثقة غير رقمية -> needs_review
+    status = str(data.get("status") or "").strip().lower()
+    if status not in _VALID_STATUSES:
+        status = "needs_review"
+    try:
+        conf = max(0.0, min(1.0, float(data.get("confidence", 0.0))))
+    except (TypeError, ValueError):
+        conf = 0.0
     if conf < config.MIN_CONFIDENCE:
         status = "needs_review"
+    note = data.get("note")
+    if not isinstance(note, str):
+        note = None
     return VerificationResult(
         claim_id=claim.claim_id, status=status, evidence=evidence[:3],
-        confidence=conf, note=data.get("note"),
+        confidence=conf, note=note,
     )

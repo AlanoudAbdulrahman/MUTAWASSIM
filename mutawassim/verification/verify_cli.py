@@ -29,7 +29,7 @@ def check(text: str) -> None:
         for e in r.evidence:
             print(f"      - [{e.ruling}] {e.url}")
         if not r.evidence:
-            print("      - لا دليل كافٍ -> امتناع")
+            print("      - لا دليل كافٍ -> إحالة لمختص")
 
 
 def main() -> None:

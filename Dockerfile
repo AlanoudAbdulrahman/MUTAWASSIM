@@ -25,4 +25,4 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # الأمر الافتراضي (يمكن تغييره لاحقاً لتشغيل لوحة Streamlit أو الخادم)
-CMD ["python", "mutawassim/pipeline.py"]
+CMD ["python", "-m", "mutawassim.pipeline"]

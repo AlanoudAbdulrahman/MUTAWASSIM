@@ -22,6 +22,7 @@ def normalize_text(text: str) -> str:
 def clean_posts(raw: list[dict]) -> list[Post]:
     """يحوّل سجلات خام [{post_id, text}] إلى list[Post] نظيفة بلا تكرار/فراغ."""
     seen: set[str] = set()
+    used_ids: set[str] = set()
     out: list[Post] = []
     for i, r in enumerate(raw):
         text = normalize_text(str(r.get("text", "")))
@@ -30,9 +31,15 @@ def clean_posts(raw: list[dict]) -> list[Post]:
         if text in seen:  # إزالة التكرار
             continue
         seen.add(text)
+        # معرّف فريد: معرّفان متطابقان يجعلان معرّفات الادعاءات تتصادم
+        post_id = base = str(r.get("post_id") or f"p{i:04d}")
+        n = 2
+        while post_id in used_ids:
+            post_id, n = f"{base}_{n}", n + 1
+        used_ids.add(post_id)
         out.append(
             Post(
-                post_id=str(r.get("post_id") or f"p{i:04d}"),
+                post_id=post_id,
                 text=text,
                 meta=r.get("meta", {}) or {},
             )
