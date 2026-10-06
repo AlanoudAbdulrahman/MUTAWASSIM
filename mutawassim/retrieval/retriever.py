@@ -1,9 +1,15 @@
 """
-retriever.py — الاسترجاع الدلالي من المصادر المعتمدة.
+retriever.py — الاسترجاع من المصادر المعتمدة.
 المالك: غيداء (التحقق/الاسترجاع).
 
-يعمل فورًا بفهرس داخلي (cosine على متجهات embeddings). المصادر تُحمّل من
-SOURCES_FILE. لاحقًا يمكن استبدال الفهرس الداخلي بـ Chroma (index_builder.py).
+MOCK (بلا مفاتيح): مطابقة لفظية عربية (coverage) — دقيقة للأحاديث القصيرة.
+
+الحقيقي = استرجاع هجين:
+  1) لفظي أولاً (coverage): يمسك الحديث نفسه بدرجته الصحيحة بدقة عالية.
+  2) دلالي احتياطيًا (embeddings + cosine): فقط عند غياب تطابق لفظي،
+     لالتقاط الصياغات المعاد صياغتها.
+الهجين يجمع دقة اللفظي مع تغطية الدلالي.
+المصادر تُحمّل من SOURCES_FILE ثم العيّنة الاحتياطية.
 """
 from __future__ import annotations
 
@@ -12,12 +18,13 @@ import json
 from .. import config
 from ..schemas import Evidence
 from .embeddings import embed
+from .arabic import coverage
 
-_INDEX: list[dict] | None = None   # [{doc, vec}]
+_DOCS: list[dict] | None = None     # قائمة المصادر
+_VECS: list[list[float]] | None = None  # متجهاتها (للوضع الحقيقي فقط)
 
 
 def _load_sources() -> list[dict]:
-    # المصادر الحقيقية أولًا، ثم العيّنة الاحتياطية
     for path in (config.SOURCES_FILE, config.SOURCES_SAMPLE_FILE):
         if path.exists():
             return json.loads(path.read_text(encoding="utf-8"))
@@ -25,42 +32,66 @@ def _load_sources() -> list[dict]:
 
 
 def build_index() -> int:
-    """يبني الفهرس الداخلي من ملف المصادر. يرجّع عدد المصادر المفهرسة."""
-    global _INDEX
+    """يحمّل المصادر (ويبني المتجهات في الوضع الحقيقي). يرجّع عددها."""
+    global _DOCS, _VECS
     docs = _load_sources()
-    vecs = embed([d.get("text", "") for d in docs]) if docs else []
-    _INDEX = [{"doc": d, "vec": v} for d, v in zip(docs, vecs)]
-    return len(_INDEX)
+    vecs = None
+    if not config.MOCK_MODE and docs:
+        # تُحسب المتجهات قبل الحفظ: لو فشلت (مفتاح خاطئ مثلًا) لا يبقى فهرس بلا متجهات
+        # يُعطّل البحث بالمعنى بصمت لكل من بعده؛ تُعاد المحاولة في الطلب التالي
+        vecs = embed([d.get("text", "") for d in docs], kind="passage")
+    _DOCS, _VECS = docs, vecs
+    return len(docs)
 
 
 def _cosine(a: list[float], b: list[float]) -> float:
     return sum(x * y for x, y in zip(a, b))
 
 
+def _sim_threshold() -> float:
+    if config.EMBED_PROVIDER == "openai":
+        return config.MIN_SIM_OPENAI
+    return config.MIN_SIM
+
+
+def _to_evidence(d: dict) -> Evidence:
+    return Evidence(
+        source=d.get("source", ""),
+        url=d.get("url", ""),
+        ruling=d.get("ruling"),
+        snippet=d.get("text", "")[:300],
+    )
+
+
+def _lexical(query: str) -> list[tuple[dict, float]]:
+    scored = [(d, coverage(query, d.get("text", ""))) for d in _DOCS or []]
+    return [(d, s) for d, s in scored if s >= config.MIN_COVERAGE]
+
+
+def _semantic(query: str) -> list[tuple[dict, float]]:
+    qv = embed([query], kind="query")[0]
+    thr = _sim_threshold()
+    scored = [(d, _cosine(qv, v)) for d, v in zip(_DOCS or [], _VECS or [])]
+    return [(d, s) for d, s in scored if s >= thr]
+
+
 def retrieve(normalized_query: str, k: int | None = None) -> list[Evidence]:
-    """يرجّع أقرب k مصادر كـ Evidence مرتّبة تنازليًا بالتشابه."""
-    global _INDEX
-    if _INDEX is None:
+    """يرجّع المصادر الأكثر صلة فقط (فوق العتبة)، مرتّبة تنازليًا."""
+    global _DOCS, _VECS
+    if _DOCS is None:
         build_index()
-    if not _INDEX:
+    if not _DOCS:
         return []
     k = k or config.RETRIEVE_K
-    qv = embed([normalized_query])[0]
-    ranked = sorted(
-        ((e, _cosine(qv, e["vec"])) for e in _INDEX),
-        key=lambda t: t[1], reverse=True,
-    )
-    # استبعاد ما كان تشابهه أدنى من العتبة (يمنع إسناد ادعاء لمصدر غير ذي صلة)
-    ranked = [(e, s) for e, s in ranked if s >= config.MIN_SIM][:k]
-    out: list[Evidence] = []
-    for e, _s in ranked:
-        d = e["doc"]
-        out.append(
-            Evidence(
-                source=d.get("source", ""),
-                url=d.get("url", ""),
-                ruling=d.get("ruling"),
-                snippet=d.get("text", "")[:300],
-            )
-        )
-    return out
+
+    if config.MOCK_MODE:
+        # وضع MOCK: لفظي فقط
+        scored = _lexical(normalized_query)
+    else:
+        # هجين: لفظي أولاً (دقيق)، ثم دلالي احتياطيًا (للصياغات المختلفة)
+        scored = _lexical(normalized_query)
+        if not scored:
+            scored = _semantic(normalized_query)
+
+    scored.sort(key=lambda t: t[1], reverse=True)
+    return [_to_evidence(d) for d, _s in scored[:k]]

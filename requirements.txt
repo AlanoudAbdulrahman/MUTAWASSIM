@@ -5,4 +5,5 @@ fastapi
 uvicorn
 streamlit
 pytest
-streamlit>=1.30.0
+fpdf2>=2.8          # تقرير PDF
+uharfbuzz           # تشكيل الحروف العربية في الـPDF

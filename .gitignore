@@ -19,5 +19,12 @@ mutawassim/data/chroma_index/
 # نظام
 .DS_Store
 .ipynb_checkpoints/
+chroma_db/
 
-#
+# تقارير PDF المولّدة
+*.pdf
+
+# قاعدة سجل التحقق المحلية
+mutawassim/data/*.db
+mutawassim/data/*.db-*
+mutawassim/data/history/

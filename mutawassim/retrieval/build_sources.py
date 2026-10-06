@@ -24,9 +24,21 @@ OUT_JSON = config.SOURCES_FILE  # data/sources/sources.json
 _REQUIRED = ("id", "text", "url", "ruling", "source", "type")
 
 
-def build_sources(seed_csv: pathlib.Path | None = None) -> int:
-    """يحوّل CSV البذرة إلى sources.json. يرجّع عدد السجلات."""
+def _existing_texts(path: pathlib.Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return {d.get("text", "") for d in json.loads(path.read_text(encoding="utf-8"))}
+
+
+def build_sources(seed_csv: pathlib.Path | None = None, out_json: pathlib.Path | None = None,
+                  force: bool = False) -> int:
+    """يحوّل CSV البذرة إلى sources.json. يرجّع عدد السجلات.
+
+    يرفض الكتابة إذا كان sources.json يحتوي مصادر غير موجودة في CSV، حتى لا
+    تُمسح مصادر أُضيفت مباشرة إلى JSON. استخدموا force=True (--force) عمدًا فقط.
+    """
     seed_csv = seed_csv or SEED_CSV
+    out_json = out_json or OUT_JSON
     if not seed_csv.exists():
         raise FileNotFoundError(f"لم يوجد ملف البذرة: {seed_csv}")
 
@@ -49,12 +61,21 @@ def build_sources(seed_csv: pathlib.Path | None = None) -> int:
                 "type": (r.get("type") or "hadith").strip(),
             })
 
-    OUT_JSON.write_text(
+    lost = _existing_texts(out_json) - {r["text"] for r in rows}
+    if lost and not force:
+        raise RuntimeError(
+            f"الكتابة ستمسح {len(lost)} مصدرًا موجودًا في {out_json.name} وغير موجود في CSV. "
+            "أضيفوها إلى CSV أولًا، أو شغّلوا بـ --force إن كان المسح مقصودًا."
+        )
+
+    out_json.write_text(
         json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     return len(rows)
 
 
 if __name__ == "__main__":
-    n = build_sources()
+    import sys
+
+    n = build_sources(force="--force" in sys.argv)
     print(f"تم بناء {n} مصدرًا -> {OUT_JSON}")
