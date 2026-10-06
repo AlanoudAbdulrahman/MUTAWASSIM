@@ -77,7 +77,7 @@ def chat_json(system: str, user: str) -> dict[str, Any]:
 
 def _real_chat(system: str, user: str) -> str:
     """تنفيذ OpenAI (الافتراضي). لمزود آخر: غيّروا هذه الدالة فقط.
-    يتطلب: pip install openai + مفتاح (من الزائر أو LLM_API_KEY) + MOCK_MODE=0."""
+    يتطلب: مكتبة openai (ضمن requirements.txt) + مفتاح (من الزائر أو LLM_API_KEY) + MOCK_MODE=0."""
     if config.LLM_PROVIDER != "openai":
         raise NotImplementedError(
             f"المزود {config.LLM_PROVIDER} غير مُفعّل — عدّلوا _real_chat في llm.py"

@@ -75,7 +75,7 @@ pytest -q
 ```
 
 ## الانتقال للوضع الحقيقي
-1. `pip install -r requirements.txt` ثم `pip install openai` (أو `requirements-full.txt` للمزوّد المحلي `local` والفلتر الدلالي).
+1. `pip install -r requirements.txt` (ويمكن إضافة `requirements-full.txt` للمزوّد المحلي `local` والفلتر الدلالي).
 2. انسخوا `.env.example` إلى `.env` واضبطوا `MOCK_MODE=0`. ضعوا `LLM_API_KEY` في `.env`
    أو في متغيرات بيئة النظام (الأخيرة تتقدّم على `.env`). لا يُكتب المفتاح في الكود أبدًا.
 3. لاستخراج الادعاءات بالنموذج: `USE_LLM_EXTRACT=1` (الافتراضي تقسيم الجمل).
