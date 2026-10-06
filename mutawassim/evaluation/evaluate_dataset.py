@@ -10,16 +10,12 @@ except ImportError:
     HAS_AI_MODEL = False
     print("تنبيه: مكتبة sentence-transformers غير مثبتة، سيتم استخدام محاكاة مبسطة (MOCK) للتقييم.")
 
+from mutawassim.verification.verifier import _status_from_ruling
+
+
 def map_ruling_to_status(ruling: str) -> str:
-    """يحول الحكم الشرعي في المصدر إلى حالة تقنية."""
-    ruling_lower = ruling.lower() if ruling else ""
-    if "موضوع" in ruling_lower or "باطل" in ruling_lower or "لا أصل له" in ruling_lower:
-        return "fabricated"
-    if "ضعيف" in ruling_lower:
-        return "weak"
-    if "صحيح" in ruling_lower or "حسن" in ruling_lower or "نص قرآني" in ruling_lower:
-        return "confirmed"
-    return "needs_review"
+    """يحول الحكم الشرعي في المصدر إلى حالة تقنية (نفس جدول المحقق)."""
+    return _status_from_ruling(ruling) or "needs_review"
 
 def run_evaluation(test_file="mutawassim/data/test_set/test_set.json", sources_file="mutawassim/data/sources/sources.json", threshold=0.4):
     print("جاري تحميل بيانات الاختبار والمصادر...")
@@ -116,7 +112,8 @@ def run_evaluation(test_file="mutawassim/data/test_set/test_set.json", sources_f
     print(f"الاستدعاء (Recall): {recall:.2f}% (من إجمالي المغلوط، استطاع النظام كشف {recall:.1f}%)")
     print("\n--- مؤشرات المطابقة العامة ---")
     print(f"دقة درجة الحكم الإجمالية (Accuracy): {accuracy:.2f}%")
-    print(f"نسبة صحة الإحالة (Needs Review): {(results['needs_review_correct'] / 20 * 100) if 20 else 0:.2f}%")
+    expected_review = sum(item["expected_status"] == "needs_review" for item in test_set)
+    print(f"نسبة صحة الإحالة (Needs Review): {(results['needs_review_correct'] / expected_review * 100) if expected_review else 0:.2f}%")
     print("=" * 50)
 
 if __name__ == "__main__":

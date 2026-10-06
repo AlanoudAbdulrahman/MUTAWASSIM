@@ -30,6 +30,9 @@ venv/
 env/
 .env/
 
+# Secrets — never copy API keys into the image
+.env
+
 # IDEs and Editors
 .vscode/
 .idea/
@@ -38,3 +41,10 @@ env/
 
 # Project specific
 chroma_db/
+
+# Local-only files: private history DB, generated PDFs, test cache
+mutawassim/data/*.db*
+mutawassim/data/history/
+*.pdf
+.pytest_cache/
+run.bat

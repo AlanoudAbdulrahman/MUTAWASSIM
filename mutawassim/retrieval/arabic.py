@@ -44,9 +44,34 @@ def tokens(text: str) -> set[str]:
     return out
 
 
+# أدوات النفي: «لا» ضمن الكلمات الشائعة فتُحذف من المقارنة، فبدون هذا الفحص
+# يطابق «يجوز الكذب» نص «لا يجوز الكذب» تطابقًا كاملًا وهو عكسه.
+_NEGATIONS = {"لا", "لم", "لن", "ليس", "ليست"}
+
+
+def _negated(text: str) -> set[str]:
+    """الكلمات الواقعة بعد أداة نفي مباشرة (بنفس تطبيع tokens)."""
+    words = _NON_LETTER.sub(" ", normalize(text)).split()
+    out: set[str] = set()
+    for neg, w in zip(words, words[1:]):
+        if neg in _NEGATIONS:
+            out.add(w[2:] if w.startswith("ال") and len(w) > 3 else w)
+    return out
+
+
+def negation_conflict(query: str, doc: str) -> bool:
+    """كلمة مشتركة منفية في أحد النصين دون الآخر («يؤمن» مقابل «لا يؤمن»)."""
+    return bool((_negated(query) ^ _negated(doc)) & tokens(query) & tokens(doc))
+
+
 def coverage(query: str, doc: str) -> float:
-    """نسبة كلمات الاستعلام المميّزة الموجودة في المصدر (0..1)."""
+    """نسبة كلمات الاستعلام المميّزة الموجودة في المصدر (0..1).
+    إن نُفيت في أحد النصين كلمةٌ مشتركة دون الآخر تُنصّف النتيجة فلا تُعدّ تطابقًا
+    دقيقًا. النفي في جزء من المصدر لا يمس الادعاء (مثل «فإن لم يستطع») لا يؤثر."""
     q, d = tokens(query), tokens(doc)
     if not q:
         return 0.0
-    return len(q & d) / len(q)
+    score = len(q & d) / len(q)
+    if negation_conflict(query, doc):
+        score /= 2
+    return score
