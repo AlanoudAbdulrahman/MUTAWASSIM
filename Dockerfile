@@ -7,9 +7,9 @@ ENV PYTHONUNBUFFERED=1
 # تعيين مجلد العمل داخل الحاوية
 WORKDIR /app
 
-# الموقع يحتاج الأساسية + openai فقط (المكتبات الثقيلة في requirements-full.txt اختيارية)
+# الموقع يحتاج الأساسية فقط (المكتبات الثقيلة في requirements-full.txt اختيارية)
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt openai
+RUN pip install --no-cache-dir -r requirements.txt
 
 # نسخ باقي ملفات المشروع إلى الحاوية (.env وقاعدة السجل مستبعدة في .dockerignore)
 COPY . .

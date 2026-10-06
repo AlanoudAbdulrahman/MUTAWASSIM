@@ -16,10 +16,9 @@ It supports da’wah organizations, researchers, and media teams by turning reli
 # 1) Install (once)
 python -m venv venv
 venv\Scripts\activate            # macOS/Linux: source venv/bin/activate
-pip install -r requirements.txt
-pip install openai               # for the real model
+pip install -r requirements.txt  # everything the system needs, including the real model
 
-# 2) Settings (once): copy the template and set MOCK_MODE=0 for the real model
+# 2) Settings (once): copy the template, then set MOCK_MODE=0 and USE_LLM_EXTRACT=1 for the real model
 copy .env.example .env           # macOS/Linux: cp .env.example .env
 
 # 3) Run — opens http://localhost:8000 in your browser
@@ -27,6 +26,10 @@ python -m mutawassim
 ```
 
 On Windows you can also **double-click `run.bat`**.
+
+**`.env` vs `.env.example`:** `.env.example` is the template in the repository: every setting with a safe default and no secrets. `.env` is your own copy of it on your machine, where you change settings (and may put your key). `.env` is git-ignored, so it is never uploaded.
+
+`requirements-full.txt` is optional: it adds a semantic layer to the religious-content filter and local embeddings (sentence-transformers, a large download). Without it the filter uses its keyword list, and verification works the same.
 
 **The API key:** on your own machine the site uses `LLM_API_KEY` from `.env` or a system environment variable. Visitors of a public deployment enter **their own** OpenAI key in the site (see [Privacy & Security](#privacy--security)). Without any key, `MOCK_MODE=1` runs the whole system for free with simplified logic — useful for development, not for real results.
 
@@ -226,7 +229,7 @@ mutawassim/
 ├── api/                FastAPI: endpoints, views, security
 ├── web/                React website (no build step)
 ├── data/               sources, test sets, demo posts
-└── tests/              193 tests
+└── tests/              195 tests
 ```
 
 ---
@@ -238,7 +241,7 @@ mutawassim/
 - **Backend:** FastAPI, Pydantic, SQLite.
 - **Frontend:** React (served by FastAPI, no build step), custom SVG charts.
 - **Reports:** fpdf2 with HarfBuzz Arabic shaping.
-- **Quality:** pytest (193 tests), automatic benchmarking.
+- **Quality:** pytest (195 tests), automatic benchmarking.
 
 ---
 
