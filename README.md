@@ -27,6 +27,8 @@ python -m mutawassim
 
 On Windows you can also **double-click `run.bat`**.
 
+**`.env` vs `.env.example`:** `.env.example` is the template in the repository: every setting with a safe default and no secrets. `.env` is your own copy of it on your machine, where you change settings (and may put your key). `.env` is git-ignored, so it is never uploaded.
+
 `requirements-full.txt` is optional: it adds a semantic layer to the religious-content filter and local embeddings (sentence-transformers, a large download). Without it the filter uses its keyword list, and verification works the same.
 
 **The API key:** on your own machine the site uses `LLM_API_KEY` from `.env` or a system environment variable. Visitors of a public deployment enter **their own** OpenAI key in the site (see [Privacy & Security](#privacy--security)). Without any key, `MOCK_MODE=1` runs the whole system for free with simplified logic — useful for development, not for real results.
