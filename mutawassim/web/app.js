@@ -137,7 +137,7 @@ function Header({ tab, setTab, mode, onAbout, onKey, hasKey }) {
     <div className="hero-pattern"></div>
     <div className="hero-inner">
       <div className="brand">
-        <h1><button className="brand-link" onClick=${() => setTab("verify")} title="الصفحة الرئيسية">متوسم</button></h1>
+        <h1><button className="brand-link" onClick=${() => setTab("verify")} title="الصفحة الرئيسية"><img src="logo.png" alt="متوسم" className="brand-logo" style=${{ height: "54px", width: "auto", display: "block" }} /></button></h1>
         <p>الإنذار المبكر للمحتوى الديني المضلِّل — تحقق مسند إلى المصادر المعتمدة</p>
       </div>
       <div className="hero-actions">

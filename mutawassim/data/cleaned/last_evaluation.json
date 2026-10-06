@@ -25,8 +25,8 @@
           "got": "no_claim"
         }
       ],
-      "ran_at": "2026-10-06T12:31",
-      "fingerprint": "fa9be3ff5d701476",
+      "ran_at": "2026-10-06T16:59",
+      "fingerprint": "7f046c81805c7f5b",
       "model": "gpt-4o-mini"
     },
     "extraction": {
@@ -38,12 +38,12 @@
       "claim_precision": 1.0,
       "claim_recall": 1.0,
       "claim_f1": 1.0,
-      "type_accuracy": 0.875,
+      "type_accuracy": 1.0,
       "no_claim_accuracy": 1.0,
       "errors": 0,
       "failures": [],
-      "ran_at": "2026-10-06T12:31",
-      "fingerprint": "fa9be3ff5d701476",
+      "ran_at": "2026-10-06T16:59",
+      "fingerprint": "7f046c81805c7f5b",
       "model": "gpt-4o-mini"
     }
   }
