@@ -23,9 +23,19 @@ LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "openai")
 LLM_API_KEY: str = os.getenv("LLM_API_KEY", "")
 LLM_MODEL: str = os.getenv("LLM_MODEL", "gpt-4o-mini")
 
-# نموذج الـ embeddings العربي (sentence-transformers)
+# استخراج الادعاءات بالـLLM (اختياري). الافتراضي حتمي: يحفظ النص الأصلي
+# فتبقى المطابقة اللفظية دقيقة. فعّلوه للمنشورات المعقّدة متعددة الادعاءات فقط.
+USE_LLM_EXTRACT: bool = os.getenv("USE_LLM_EXTRACT", "0") == "1"
+
+# مزوّد الـ embeddings:
+#   openai -> text-embedding-3-small عبر الـAPI (بلا torch، الأنسب على ويندوز)
+#   local  -> sentence-transformers/e5 محليًا (يتطلب torch سليمًا)
+EMBED_PROVIDER: str = os.getenv("EMBED_PROVIDER", "openai")
+OPENAI_EMBED_MODEL: str = os.getenv("OPENAI_EMBED_MODEL", "text-embedding-3-small")
+
+# نموذج الـ embeddings المحلي (عند EMBED_PROVIDER=local)
 EMBEDDING_MODEL: str = os.getenv(
-    "EMBEDDING_MODEL", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    "EMBEDDING_MODEL", "intfloat/multilingual-e5-base"
 )
 
 # مسارات البيانات
@@ -34,10 +44,18 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 SOURCES_FILE = DATA_DIR / "sources" / "sources.json"          # المصادر الحقيقية (تُبنى من build_sources.py)
 SOURCES_SAMPLE_FILE = DATA_DIR / "sources" / "sources.sample.json"  # عيّنة احتياطية
-TEST_SET_FILE = DATA_DIR / "test_set" / "test_set.sample.json"
+TEST_SET_FILE = DATA_DIR / "test_set" / "test_set.json"
 CHROMA_DIR = DATA_DIR / "chroma_index"
 
 # إعدادات الاسترجاع والعتبات
 RETRIEVE_K: int = int(os.getenv("RETRIEVE_K", "5"))
 MIN_CONFIDENCE: float = float(os.getenv("MIN_CONFIDENCE", "0.35"))
-MIN_SIM: float = float(os.getenv("MIN_SIM", "0.15"))  # أدنى تشابه لقبول دليل
+MIN_SIM: float = float(os.getenv("MIN_SIM", "0.15"))  # أدنى تشابه دلالي (e5 المحلي)
+MIN_SIM_OPENAI: float = float(os.getenv("MIN_SIM_OPENAI", "0.45"))  # أدنى تشابه (openai، أساسه أعلى)
+MIN_COVERAGE: float = float(os.getenv("MIN_COVERAGE", "0.6"))  # أدنى تغطية لفظية (وضع MOCK)
+
+# الحفظ: قاعدة SQLite لسجل التحقق والانتشار عبر الزمن (غير مرفوعة)
+DB_FILE = pathlib.Path(os.getenv("DB_FILE") or DATA_DIR / "mutawassim.db")
+
+# القياس التلقائي: يُعاد قياس الأداء عند تغيّر الكود أو البيانات أو الإعدادات
+AUTO_EVALUATE: bool = os.getenv("AUTO_EVALUATE", "1") == "1"

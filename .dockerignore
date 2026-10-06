@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Secrets — never copy API keys into the image
+.env
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+chroma_db/
+
+# Local-only files: private history DB, generated PDFs, test cache
+mutawassim/data/*.db*
+mutawassim/data/history/
+*.pdf
+.pytest_cache/
+run.bat

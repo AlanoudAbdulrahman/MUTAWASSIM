@@ -1,9 +1,9 @@
-id,text,url,ruling,source,type
-s1,النظافة من الإيمان,https://dorar.net/hadith,ضعيف,dorar.net/hadith,hadith
-s2,حب الوطن من الإيمان,https://dorar.net/hadith,موضوع,dorar.net/hadith,hadith
-s3,اطلبوا العلم ولو في الصين,https://dorar.net/hadith,موضوع,dorar.net/hadith,hadith
-s4,إنما الأعمال بالنيات وإنما لكل امرئ ما نوى,https://dorar.net/hadith,صحيح,dorar.net/hadith,hadith
-s5,من حسن إسلام المرء تركه ما لا يعنيه,https://dorar.net/hadith,حسن,dorar.net/hadith,hadith
-s6,من غشنا فليس منا,https://dorar.net/hadith,صحيح,dorar.net/hadith,hadith
-s7,اختلاف أمتي رحمة,https://dorar.net/hadith,موضوع,dorar.net/hadith,hadith
-s8,المؤمن القوي خير وأحب إلى الله من المؤمن الضعيف,https://dorar.net/hadith,صحيح,dorar.net/hadith,hadith
+﻿id,text,url,ruling,source,type
+s1,النظافة من الإيمان,https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%81%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86,ضعيف,dorar.net/hadith,hadith
+s2,حب الوطن من الإيمان,https://dorar.net/hadith/search?q=%D8%AD%D8%A8%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86,موضوع,dorar.net/hadith,hadith
+s3,اطلبوا العلم ولو في الصين,https://dorar.net/hadith/search?q=%D8%A7%D8%B7%D9%84%D8%A8%D9%88%D8%A7%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%20%D9%88%D9%84%D9%88%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%B5%D9%8A%D9%86,موضوع,dorar.net/hadith,hadith
+s4,إنما الأعمال بالنيات وإنما لكل امرئ ما نوى,https://dorar.net/hadith/search?q=%D8%A5%D9%86%D9%85%D8%A7%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A8%D8%A7%D9%84%D9%86%D9%8A%D8%A7%D8%AA%20%D9%88%D8%A5%D9%86%D9%85%D8%A7%20%D9%84%D9%83%D9%84%20%D8%A7%D9%85%D8%B1%D8%A6%20%D9%85%D8%A7%20%D9%86%D9%88%D9%89,صحيح,dorar.net/hadith,hadith
+s5,من حسن إسلام المرء تركه ما لا يعنيه,https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%AD%D8%B3%D9%86%20%D8%A5%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%B1%D8%A1%20%D8%AA%D8%B1%D9%83%D9%87%20%D9%85%D8%A7%20%D9%84%D8%A7%20%D9%8A%D8%B9%D9%86%D9%8A%D9%87,حسن,dorar.net/hadith,hadith
+s6,من غشنا فليس منا,https://dorar.net/hadith/search?q=%D9%85%D9%86%20%D8%BA%D8%B4%D9%86%D8%A7%20%D9%81%D9%84%D9%8A%D8%B3%20%D9%85%D9%86%D8%A7,صحيح,dorar.net/hadith,hadith
+s7,اختلاف أمتي رحمة,https://dorar.net/hadith/search?q=%D8%A7%D8%AE%D8%AA%D9%84%D8%A7%D9%81%20%D8%A3%D9%85%D8%AA%D9%8A%20%D8%B1%D8%AD%D9%85%D8%A9,موضوع,dorar.net/hadith,hadith
+s8,المؤمن القوي خير وأحب إلى الله من المؤمن الضعيف,https://dorar.net/hadith/search?q=%D8%A7%D9%84%D9%85%D8%A4%D9%85%D9%86%20%D8%A7%D9%84%D9%82%D9%88%D9%8A%20%D8%AE%D9%8A%D8%B1%20%D9%88%D8%A3%D8%AD%D8%A8%20%D8%A5%D9%84%D9%89%20%D8%A7%D9%84%D9%84%D9%87%20%D9%85%D9%86%20%D8%A7%D9%84%D9%85%D8%A4%D9%85%D9%86%20%D8%A7%D9%84%D8%B6%D8%B9%D9%8A%D9%81,صحيح,dorar.net/hadith,hadith
